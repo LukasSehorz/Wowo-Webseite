@@ -1,0 +1,13 @@
+import { chromium } from 'playwright';
+import { renameSync } from 'node:fs';
+import { roundDir, DEVICES } from './review-lib.mjs';
+const out = roundDir(undefined, 'motion');
+const browser = await chromium.launch();
+const context = await browser.newContext({ ...DEVICES.desktop, locale: 'de-DE', recordVideo: { dir: out, size: { width: 1440, height: 900 } } });
+const page = await context.newPage();
+await page.goto('http://localhost:3100/', { waitUntil: 'commit' });
+await page.waitForTimeout(3500);
+const v = page.video();
+await context.close();
+renameSync(await v.path(), `${out}/home-desktop-load.webm`);
+await browser.close();

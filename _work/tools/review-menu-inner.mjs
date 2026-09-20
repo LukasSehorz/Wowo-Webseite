@@ -1,0 +1,17 @@
+import { open, roundDir, scrollTo, sleep } from './review-lib.mjs';
+const out = roundDir(undefined, 'states');
+const { browser, page } = await open('/gutscheine', 'mobile');
+await page.locator('header button').first().tap();
+await sleep(1200);
+const d = await page.evaluate(() => { const d = document.querySelector('[role=dialog]'); const r = d.getBoundingClientRect(); const h = document.querySelector('header').getBoundingClientRect(); return { top: Math.round(r.top), h: Math.round(r.height), headerTop: Math.round(h.top), items: [...d.querySelectorAll('a')].map((a) => a.textContent.trim()) }; });
+console.log('menu at top of inner page', JSON.stringify(d));
+await page.screenshot({ path: `${out}/m-menu-inner-top.png` });
+await page.keyboard.press('Escape');
+await sleep(800);
+await scrollTo(page, 1200, 900);
+await page.locator('header button').first().tap();
+await sleep(1200);
+const d2 = await page.evaluate(() => { const d = document.querySelector('[role=dialog]'); const r = d.getBoundingClientRect(); const h = document.querySelector('header').getBoundingClientRect(); return { top: Math.round(r.top), h: Math.round(r.height), headerTop: Math.round(h.top) }; });
+console.log('menu when scrolled', JSON.stringify(d2));
+await page.screenshot({ path: `${out}/m-menu-inner-scrolled.png` });
+await browser.close();

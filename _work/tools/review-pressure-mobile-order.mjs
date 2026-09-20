@@ -1,0 +1,23 @@
+import { open, roundDir, scrollTo, sleep } from './review-lib.mjs';
+const out = roundDir(undefined, 'states');
+const { browser, page } = await open('/', 'mobile');
+const info = await page.evaluate(() => {
+  const s = document.querySelector('#druckverteilung');
+  const q = (sel) => s.querySelector(sel);
+  const r = (el) => { if (!el) return null; const b = el.getBoundingClientRect(); return { top: Math.round(b.top + scrollY), h: Math.round(b.height) }; };
+  const canvas = [...s.querySelectorAll('canvas')].pop();
+  const seg = q('fieldset');
+  const range = q('input[type=range]');
+  const legend = [...s.querySelectorAll('*')].find((e) => e.children.length === 0 && /niedriger Druck/.test(e.textContent));
+  const dl = q('dl') || [...s.querySelectorAll('*')].find((e) => /Spitzendruck unter der Ferse/.test(e.textContent) && e.children.length > 2 && e.getBoundingClientRect().height < 400);
+  const labels = [...s.querySelectorAll('label')].map((l) => ({ t: l.textContent.trim(), w: Math.round(l.getBoundingClientRect().width), h: Math.round(l.getBoundingClientRect().height), fs: getComputedStyle(l).fontSize, lines: Math.round(l.getBoundingClientRect().height / parseFloat(getComputedStyle(l).lineHeight)) }));
+  return { section: r(s), text: r([...s.querySelectorAll('p')].find((p) => /La Trobe/.test(p.textContent))), seg: r(seg), canvas: r(canvas), range: r(range), legend: r(legend?.parentElement), readouts: r(dl), labels };
+});
+console.log(JSON.stringify(info, null, 1));
+const top = info.seg.top;
+await scrollTo(page, top - 90, 4500);
+await page.screenshot({ path: `${out}/m-pressure-onescreen.png` });
+await page.locator('#druckverteilung label', { hasText: 'Stiefel allein' }).first().tap();
+await sleep(2500);
+await page.screenshot({ path: `${out}/m-pressure-onescreen-boot.png` });
+await browser.close();

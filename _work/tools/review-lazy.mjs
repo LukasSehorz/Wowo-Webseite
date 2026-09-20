@@ -1,0 +1,12 @@
+import { open, scrollTo, sleep } from './review-lib.mjs';
+const { browser, page } = await open('/', 'mobile');
+const reqs = [];
+page.on('response', async (r) => { const u = r.url(); if (u.includes('/_next/image')) { const len = (await r.body().catch(() => Buffer.alloc(0))).length; reqs.push(decodeURIComponent(u).replace(/.*url=/, '').slice(0, 70) + ' → ' + Math.round(len / 1024) + ' kB'); } });
+const y = await page.evaluate(() => Math.round(document.querySelector('[data-open]').getBoundingClientRect().top + scrollY));
+await scrollTo(page, y - 100, 1200);
+await page.evaluate(async () => { let sc = document.querySelector('[data-open]').parentElement; while (sc && !/auto|scroll/.test(getComputedStyle(sc).overflowX)) sc = sc.parentElement; sc.scrollTo({ left: 1200, behavior: 'instant' }); });
+await sleep(2500);
+const imgs = await page.evaluate(() => [...document.querySelectorAll('[data-open] img')].map((i) => ({ ok: i.complete && i.naturalWidth > 0, nw: i.naturalWidth, src: decodeURIComponent(i.currentSrc).slice(-40), sizes: i.sizes })));
+console.log(JSON.stringify(imgs, null, 1));
+console.log(reqs.join('\n'));
+await browser.close();

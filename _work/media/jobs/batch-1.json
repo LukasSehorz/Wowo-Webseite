@@ -1,0 +1,95 @@
+[
+  {
+    "name": "product-side",
+    "variant": "flare",
+    "aspect_ratio": "21:9",
+    "resolution": "1K",
+    "background": "transparent",
+    "prompt": "Studio product photograph of ONE single full-length foam shoe insole seen exactly from the side (lateral profile view), floating horizontally, heel on the right, toe on the left. The insole is made of smooth matte light sky-blue closed-cell polyethylene foam, one solid colour, about 6 mm thick at the forefoot, with a pronounced contoured arch and a deep rounded heel cup rising at the back. Fine foam texture, crisp milled edges, soft even studio lighting, very subtle contact shadow. No text, no logo, no embossing, no pattern, no second insole. Transparent background, isolated object, photorealistic, high detail."
+  },
+  {
+    "name": "product-pair-top",
+    "variant": "flare",
+    "aspect_ratio": "1:1",
+    "resolution": "1K",
+    "background": "transparent",
+    "prompt": "Studio product photograph, top-down view, of a PAIR of full-length foam shoe insoles lying slightly overlapping at an angle, left and right. Smooth matte light sky-blue closed-cell polyethylene foam, one solid colour, anatomically contoured with raised arch and deep heel cup visible through soft shading. Fine foam surface texture, clean milled edges, soft diffuse lighting with a gentle drop shadow. No text, no logo, no embossing, no pattern. Transparent background, isolated objects, photorealistic, high detail."
+  },
+  {
+    "name": "intro-fitting-hands",
+    "variant": "flare",
+    "aspect_ratio": "4:3",
+    "resolution": "2K",
+    "prompt": "Documentary photograph, 50mm lens, shallow depth of field, soft natural window light from the left. Close-up of a physiotherapist's hands sliding a light sky-blue contoured foam insole into a plain unbranded dark grey sneaker that rests on a wooden treatment bench. The therapist wears a dark navy polo shirt, only forearms and hands visible, no face. Bright modern physiotherapy practice in the blurred background with an olive-green wall accent and a treatment table. Muted natural colours, slight film grain, realistic skin with small imperfections, candid working moment, not staged. No text, no logos, no brand marks on the shoe."
+  },
+  {
+    "name": "step-1-assessment",
+    "variant": "flare",
+    "aspect_ratio": "16:9",
+    "resolution": "2K",
+    "prompt": "Documentary photograph, 35mm lens, natural daylight, low camera angle near the floor. A physiotherapist in a dark navy polo shirt kneels behind a patient who stands barefoot on a light wooden floor; the therapist's hands gently hold the patient's heel and ankle to assess the alignment of the heel bone and Achilles tendon. Only the patient's lower legs and feet and the therapist's hands and forearms are in frame, no faces. Calm modern physiotherapy practice, blurred background with a treatment table and a window, muted natural colours with navy and olive accents, the left third of the image is calm and darker for text overlay. Slight film grain, realistic skin texture, candid, not staged. No text, no logos."
+  },
+  {
+    "name": "step-2-heating",
+    "variant": "flare",
+    "aspect_ratio": "16:9",
+    "resolution": "2K",
+    "prompt": "Documentary photograph, 50mm lens, soft natural light. On a clean light-grey counter in a physiotherapy practice stands a compact white warm-air heating device with two short round air nozzles on top and a bent stainless-steel wire rack; a pair of plain unbranded dark sneakers is placed upside down over the nozzles so warm air blows into the shoes, a light sky-blue foam insole is visible inside one shoe. A therapist's hand in a navy sleeve presses the single button on the device. No faces. Blurred bright room in the background, muted colours with navy and olive accents, the left third of the image is calm for text overlay. Slight film grain, photorealistic, not staged. No text, no logos, no brand names on the device or the shoes."
+  },
+  {
+    "name": "step-3-moulding",
+    "variant": "flare",
+    "aspect_ratio": "16:9",
+    "resolution": "2K",
+    "prompt": "Documentary photograph, 35mm lens, natural daylight from a window, low camera angle. A person wearing plain unbranded dark sneakers and rolled-up jeans stands hip-width apart on a wooden floor with knees slightly bent; a physiotherapist in a navy polo kneels beside them and guides the knee position over the second toe with both hands. Frame shows only legs, feet and the therapist's hands and forearms, no faces. Calm modern physiotherapy practice, blurred background, muted natural colours with navy and olive accents, the left third of the image is calm for text overlay. Slight film grain, realistic, candid, not staged. No text, no logos."
+  },
+  {
+    "name": "step-4-walk-check",
+    "variant": "flare",
+    "aspect_ratio": "16:9",
+    "resolution": "2K",
+    "prompt": "Documentary photograph, 50mm lens, shallow depth of field, natural daylight. Low angle view along the wooden floor of a bright physiotherapy practice corridor: a person in plain unbranded dark sneakers and jeans walks away from the camera mid-stride, heel just lifting off the floor, sharp focus on the shoes; in the soft blurred foreground at the edge of the frame the shoulder and arm of a therapist in a navy polo who is watching the gait. No faces visible. Muted natural colours with navy and olive accents, the left third of the image is calm for text overlay. Slight film grain, realistic, candid. No text, no logos."
+  },
+  {
+    "name": "feature-thermo",
+    "variant": "flare",
+    "aspect_ratio": "1:1",
+    "resolution": "2K",
+    "prompt": "Clean studio product photograph on a seamless very pale steel-blue background with soft shadows: a light sky-blue contoured foam shoe insole being gently flexed by two hands coming in from the right edge, the foam bending softly to show that it is pliable and warm; faint warm light glow on the foam. Only hands visible, natural skin, no face. Minimal, calm, premium catalogue style, soft diffuse light, photorealistic, fine foam texture. No text, no logo."
+  },
+  {
+    "name": "feature-milled",
+    "variant": "flare",
+    "aspect_ratio": "1:1",
+    "resolution": "2K",
+    "prompt": "Clean studio macro photograph on a seamless very pale steel-blue background: extreme close-up of the arch area and edge of a light sky-blue closed-cell polyethylene foam insole, showing the precise three-dimensional milled contour, crisp edge and uniform fine foam cell structure; next to it a small rectangular block of the same raw foam with fine milling marks. Soft diffuse light from above, gentle shadows, shallow depth of field, premium catalogue style, photorealistic. No text, no logo."
+  },
+  {
+    "name": "feature-heelcup",
+    "variant": "flare",
+    "aspect_ratio": "1:1",
+    "resolution": "2K",
+    "prompt": "Clean studio product photograph on a seamless very pale steel-blue background: three-quarter rear view of a single light sky-blue foam shoe insole, the camera looks into the deep rounded heel cup at the back, the raised arch contour visible behind it, soft shading that emphasises the three-dimensional cup shape. Soft diffuse light, gentle contact shadow, premium catalogue style, photorealistic, fine foam texture. No text, no logo, no embossing."
+  },
+  {
+    "name": "feature-additions",
+    "variant": "flare",
+    "aspect_ratio": "1:1",
+    "resolution": "2K",
+    "prompt": "Clean studio product photograph, top-down view, on a seamless very pale steel-blue background: the underside of a light sky-blue foam shoe insole with a small wedge-shaped darker blue foam piece attached under the heel, and beside it neatly arranged a few small loose foam components: two thin wedge strips, a teardrop-shaped metatarsal pad and a small heel raiser, all in matching blue foam. Orderly flat-lay, soft diffuse light, gentle shadows, premium catalogue style, photorealistic. No text, no logo."
+  },
+  {
+    "name": "about-hero-wide",
+    "variant": "flare",
+    "aspect_ratio": "21:9",
+    "resolution": "2K",
+    "prompt": "Documentary photograph, 35mm lens, wide cinematic frame, soft natural morning light through large windows. Interior of a calm, modern physiotherapy practice: in the foreground a wooden treatment bench with a pair of light sky-blue foam insoles, a pair of plain unbranded sneakers and a compact white warm-air device; in the blurred middle ground a therapist in a navy polo seen from behind from the shoulders down works at a treatment table. No faces. Natural materials, white walls with one olive-green wall, plants, muted natural colours, slight film grain, authentic, not staged. No text, no logos."
+  },
+  {
+    "name": "about-story-detail",
+    "variant": "flare",
+    "aspect_ratio": "4:5",
+    "resolution": "2K",
+    "prompt": "Documentary photograph, 50mm lens, shallow depth of field, soft natural window light. A physiotherapist's hands in close-up examine the sole of a patient's bare foot on a treatment table, thumbs pressing gently along the arch. Therapist wears a navy polo, only hands and forearms visible, patient only the foot and lower leg, no faces. Bright calm practice room blurred in the background with an olive-green accent, muted natural colours, slight film grain, realistic skin texture with small imperfections, candid. No text, no logos."
+  }
+]
