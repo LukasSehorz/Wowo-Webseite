@@ -441,6 +441,34 @@
   }
 }
 
+/* The hero fills the first screen on every device, so no part of the next sheet shows above
+   the fold. `svh` is the small viewport height: stable while a mobile browser bar collapses.
+   The minimum keeps headline and calls to action readable in a very short window. */
+@utility hero-screen {
+  height: max(560px, 100svh);
+}
+
+/* Phones and tablets: follow the browser bar, so the hero still fills the screen once the bar
+   has collapsed. Left to `svh` on desktop, where `dvh` would resize on every scroll. */
+@supports (height: 100dvh) {
+  @media (pointer: coarse) {
+    .hero-screen {
+      height: max(560px, 100dvh);
+    }
+  }
+}
+
+/* Digits of a counting number sit in cells of equal width, so the number keeps its place
+   while it runs. Poppins has no tabular figures; 0.62em is the width of its widest digit at
+   the display tracking. Separators keep their natural width. */
+@utility tabular-cells {
+  .digit-cell {
+    display: inline-block;
+    width: 0.62em;
+    text-align: center;
+  }
+}
+
 @utility hero-sub {
   font-size: clamp(0.875rem, 0.8115rem + 0.1587vw, 1rem);
   line-height: 1.6;

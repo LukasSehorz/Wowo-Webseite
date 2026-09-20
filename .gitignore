@@ -55,3 +55,6 @@ next-env.d.ts
 /_work/media/tmp/
 /_work/research/manufacturer-images/
 /_work/logo-preview.png
+
+# Netlify build output
+/.netlify/

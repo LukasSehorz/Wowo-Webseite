@@ -5,12 +5,15 @@ import { TextLink } from "@/components/ui/TextLink";
 import { hero } from "@/content/home";
 
 /**
- * Full-bleed footage, 722 px tall (850 px from 1536, 600 px on small screens). The media
- * runs on underneath the rounded first sheet by the sheet radius (spec 8.11).
+ * Full-bleed footage over the whole first screen: nothing of the next section shows above
+ * the fold, on phones and tablets included. `100svh` uses the small viewport height, so the
+ * hero does not jump when a mobile browser bar collapses; `100dvh` in the @supports block
+ * lets it follow the bar on browsers that handle that well. The media runs on underneath the
+ * rounded first sheet by the sheet radius (spec 8.11).
  */
 export function Hero() {
   return (
-    <section className="relative isolate h-[600px] text-white md:h-[722px] 2xl:h-[850px]">
+    <section className="hero-screen relative isolate text-white">
       <div className="shell pointer-events-none relative z-10 flex h-full flex-col items-center justify-end pb-[clamp(40px,3.37vw,64px)] text-center *:pointer-events-auto">
         <SplitHeading as="h1" lines={hero.headline} onMedia className="display display-hero max-w-[900px]" />
         <p className="hero-sub mt-5 max-w-[640px] md:mt-6">{hero.subline}</p>

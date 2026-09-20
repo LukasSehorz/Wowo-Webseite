@@ -14,6 +14,8 @@ const eslintConfig = defineConfig([
     "next-env.d.ts",
     // Working material (reference captures, tools, research) is not part of the app.
     "_work/**",
+    // Build output of the Netlify adapter.
+    ".netlify/**",
   ]),
 ]);
 

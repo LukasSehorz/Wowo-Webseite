@@ -1,0 +1,38 @@
+# Netlify-Konfiguration. Der Next.js-Adapter (@netlify/plugin-nextjs) wird von
+# Netlify automatisch installiert und muss hier nicht eingetragen werden.
+# Die Seite läuft nicht statisch: die Bestellanfrage auf /gutscheine nutzt eine
+# Server Action, next/image läuft über das Netlify Image CDN.
+
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  # Netlify-Standard ist Node 24. Fest gepinnt, damit der Build reproduzierbar bleibt.
+  NODE_VERSION = "24"
+
+# Videos und Bilder liefert Netlify direkt vom CDN aus. Ohne diesen Ausschluss
+# kopiert der Adapter die 71 MB aus public/media zusaetzlich in die Server-Funktion,
+# was Deploys und Kaltstarts unnoetig verlangsamt.
+[functions."___netlify-server-handler"]
+  excluded_files = ["public/media/**", "public/brand/**"]
+
+# Sicherheits-Header. Die Seite lädt keine fremden Skripte, Schriften oder Bilder.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "SAMEORIGIN"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), interest-cohort=()"
+
+# Videos und Bilder tragen ihren Inhalt im Dateinamen und ändern sich nicht.
+[[headers]]
+  for = "/media/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/brand/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
