@@ -1,17 +1,13 @@
 // Order request: pricing and validation. Pure functions shared by the configurator (client)
 // and the server action, so both always agree. All numbers come from config/vouchers.ts.
 
-import { tierForQuantity, vouchers, type DeliveryFormat } from "@/config/vouchers";
+import { tierForQuantity, vouchers } from "@/config/vouchers";
 import { formatNumber } from "@/lib/format";
-
-export type FormatId = DeliveryFormat["id"];
 
 export type Quote = {
   quantity: number;
   tierId: string;
   pricePerVoucher: number;
-  subtotal: number;
-  vat: number;
   total: number;
 };
 
@@ -23,29 +19,22 @@ export function clampQuantity(value: number): number {
   return Math.min(max, Math.max(min, Math.round(value)));
 }
 
-/** Net price per voucher by volume tier, net subtotal, VAT and gross total. */
+/**
+ * Price per voucher by volume tier and the total. These are final prices: the client is a small
+ * business under § 19 UStG, so no VAT is shown and there is no net and gross split.
+ */
 export function quote(quantity: number): Quote {
   const count = clampQuantity(quantity);
   const tier = tierForQuantity(count);
-  const subtotal = roundCents(count * tier.pricePerVoucher);
-  const vat = roundCents(subtotal * vouchers.vatRate);
   return {
     quantity: count,
     tierId: tier.id,
     pricePerVoucher: tier.pricePerVoucher,
-    subtotal,
-    vat,
-    total: roundCents(subtotal + vat),
+    total: roundCents(count * tier.pricePerVoucher),
   };
 }
 
 export const formatEuro = (value: number) => `${formatNumber(value, 2)} €`;
-export const vatPercent = `${formatNumber(vouchers.vatRate * 100)} %`;
-
-export const isFormatId = (value: unknown): value is FormatId =>
-  vouchers.deliveryFormats.some((format) => format.id === value);
-
-export const formatLabel = (id: FormatId) => vouchers.deliveryFormats.find((format) => format.id === id)?.label ?? id;
 
 // ---------------------------------------------------------------------------------------------
 
@@ -60,7 +49,7 @@ export type OrderValues = {
   consent: boolean;
 };
 
-export type OrderRequest = OrderValues & { format: FormatId; quote: Quote };
+export type OrderRequest = OrderValues & { quote: Quote };
 
 /** `attempt` counts rejected submits. The form uses it to re-create controls that React resets after an action. */
 export type OrderState =

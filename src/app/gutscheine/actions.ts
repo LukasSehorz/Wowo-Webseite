@@ -1,14 +1,12 @@
 "use server";
 
 import { site } from "@/config/site";
+import { finalPriceNote } from "@/content/vouchers";
 import {
   LIMITS,
   formatEuro,
-  formatLabel,
-  isFormatId,
   quote,
   validateOrder,
-  vatPercent,
   type OrderRequest,
   type OrderState,
   type OrderValues,
@@ -41,12 +39,11 @@ export async function submitOrder(previous: OrderState, data: FormData): Promise
   if (Object.keys(errors).length > 0) return { status: "invalid", attempt, errors, values };
 
   const quantity = Number(data.get("quantity"));
-  const format = data.get("format");
-  if (!Number.isInteger(quantity) || quote(quantity).quantity !== quantity || !isFormatId(format)) {
+  if (!Number.isInteger(quantity) || quote(quantity).quantity !== quantity) {
     return { status: "failed", attempt, values };
   }
 
-  const request: OrderRequest = { ...values, format, quote: quote(quantity) };
+  const request: OrderRequest = { ...values, quote: quote(quantity) };
 
   // Honeypot: people never see this field. Bots get the success view, nothing is delivered.
   if (text(data, "website", LIMITS.text)) return { status: "success", request };
@@ -69,11 +66,9 @@ function compose(request: OrderRequest): string {
     `Telefon: ${request.phone || "–"}`,
     "",
     `Anzahl der Gutscheine: ${price.quantity}`,
-    `Format der Gutscheine: ${formatLabel(request.format)}`,
     `Preis je Gutschein: ${formatEuro(price.pricePerVoucher)}`,
-    `Zwischensumme netto: ${formatEuro(price.subtotal)}`,
-    `Umsatzsteuer ${vatPercent}: ${formatEuro(price.vat)}`,
-    `Gesamt brutto: ${formatEuro(price.total)}`,
+    `Gesamt: ${formatEuro(price.total)}`,
+    finalPriceNote,
     "",
     `Nachricht: ${request.message || "–"}`,
   ].join("\n");

@@ -77,11 +77,7 @@ await qtyInput.blur();
 await sleep(700);
 console.log('typed 0', JSON.stringify(await summary()));
 
-// delivery format
-await click(page.locator('#anfrage label, #anfrage button', { hasText: 'Gedruckte Karten' }).first());
-await sleep(800);
-console.log('format print', JSON.stringify(await summary()));
-await page.screenshot({ path: `${out}/${device}-3-print.png` });
+// the delivery format was removed with the printed cards, only digital is left
 
 // set 25 again for the order, then submit empty → validation
 await click(page.locator('#anfrage button', { hasText: /^25$/ }).first());

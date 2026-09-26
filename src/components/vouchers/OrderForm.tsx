@@ -11,7 +11,7 @@ import { ConfigGroup } from "./ConfigGroup";
 type OrderFormProps = { state: OrderState };
 
 /**
- * Groups 4 and 5 of the configurator: contact details, message, consent and the honeypot.
+ * Groups 3 and 4 of the configurator: contact details, message, consent and the honeypot.
  * Errors come from the server action. A message disappears as soon as its field is edited,
  * and the values typed so far come back as default values after a rejected submit.
  */
@@ -27,7 +27,7 @@ export function OrderForm({ state }: OrderFormProps) {
 
   return (
     <>
-      <ConfigGroup index={4} title={configurator.groups.details}>
+      <ConfigGroup index={3} title={configurator.groups.details}>
         {/* two columns only from 1280 px: beside the summary the form column is too narrow for two inputs */}
         <div className="grid gap-6 xl:grid-cols-2">
           <Field
@@ -72,7 +72,7 @@ export function OrderForm({ state }: OrderFormProps) {
         </div>
       </ConfigGroup>
 
-      <ConfigGroup index={5} title={configurator.groups.message}>
+      <ConfigGroup index={4} title={configurator.groups.message}>
         <Field
           name="message"
           label={fields.message}

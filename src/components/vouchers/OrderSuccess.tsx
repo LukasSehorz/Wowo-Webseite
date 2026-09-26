@@ -5,7 +5,7 @@ import { Icon } from "@/components/ui/Icon";
 import { vouchers } from "@/config/vouchers";
 import { configurator } from "@/content/vouchers";
 import { formatNumber } from "@/lib/format";
-import { formatEuro, formatLabel, vatPercent, type OrderRequest } from "@/lib/order";
+import { formatEuro, type OrderRequest } from "@/lib/order";
 
 type OrderSuccessProps = { request: OrderRequest };
 
@@ -28,10 +28,7 @@ export function OrderSuccess({ request }: OrderSuccessProps) {
     { label: fields.email, value: request.email },
     { label: fields.phone, value: request.phone },
     { label: summary.quantity, value: formatNumber(price.quantity) },
-    { label: summary.format, value: formatLabel(request.format) },
     { label: summary.pricePerVoucher, value: formatEuro(price.pricePerVoucher) },
-    { label: summary.subtotal, value: formatEuro(price.subtotal) },
-    { label: `${summary.vat} ${vatPercent}`, value: formatEuro(price.vat) },
     { label: summary.total, value: formatEuro(price.total) },
     { label: fields.message, value: request.message },
   ].filter((row) => row.value);
@@ -56,7 +53,8 @@ export function OrderSuccess({ request }: OrderSuccessProps) {
           </div>
         ))}
       </dl>
-      {vouchers.pricesArePlaceholders ? <p className="source-line mt-4">{vouchers.placeholderNote}</p> : null}
+      <p className="source-line mt-4">{summary.vatNote}</p>
+      {vouchers.pricesArePlaceholders ? <p className="source-line mt-1.5">{vouchers.placeholderNote}</p> : null}
     </div>
   );
 }

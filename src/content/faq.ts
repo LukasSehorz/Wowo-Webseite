@@ -1,9 +1,11 @@
 // Frequently asked questions (copy deck 3.7).
 // Answers with a TODO(client) comment contain a value the client still has to confirm.
 
+import { site } from "@/config/site";
 import { typesetContent } from "@/lib/format";
 
-export type FaqItem = { question: string; answer: string };
+/** An answer may close with one link. `href` is skipped by `typesetContent`, the label is not. */
+export type FaqItem = { question: string; answer: string; link?: { label: string; href: string } };
 
 export const faqHeading = "Häufige Fragen";
 
@@ -16,7 +18,9 @@ export const faq: FaqItem[] = typesetContent([
   {
     question: "Wo findet die Anpassung statt?",
     // TODO(client): confirm location and on-site visits
-    answer: "In unserer Praxis in Waldkraiburg. Für größere Teams kommen wir nach Absprache in Ihr Unternehmen.",
+    answer:
+      "In unserer Praxis in Waldkraiburg. Für größere Teams kommen wir nach Absprache in Ihr Unternehmen. Ihre Mitarbeitenden können den Gutschein auch bei einer Formthotics-Partnerpraxis in ihrer Nähe einlösen. Deutschlandweit sind das über 300 Praxen.",
+    link: { label: "Partnerpraxis suchen", href: site.partnerDirectoryUrl },
   },
   {
     question: "Wie lange dauert ein Termin?",
@@ -37,7 +41,7 @@ export const faq: FaqItem[] = typesetContent([
   {
     question: "Gibt es eine Eingewöhnung?",
     answer:
-      "Ja. Tragen Sie die Einlagen in den ersten drei bis sieben Tagen etwa eine Stunde täglich und steigern Sie die Dauer danach. Anfangs können Druckstellen auftreten. In dem Fall passen wir nach.",
+      "Sie können die Einlagen direkt nach der Anpassung tragen. Je nach Fuß dauert es ein paar Tage, bis Sie sich an sie gewöhnt haben. Treten dabei Druckstellen auf, passen wir nach.",
   },
   {
     question: "Wie lange halten die Einlagen?",

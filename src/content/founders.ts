@@ -26,7 +26,14 @@ export const founders: Founder[] = typesetContent([
     tone: "navy",
     image: null,
     bio: "Sebastian Rauscher ist seit 2012 Physiotherapeut und seit 2018 in Manueller Therapie zertifiziert. Von 2018 bis 2024 unterrichtete er im Lehrteam der FAMP. Seit 2024 führt er seine eigene Privatpraxis für Physiotherapie.",
-    qualifications: ["Physiotherapeut", "Manuelle Therapie", "Manuelle Lymphdrainage", "Lehrteam FAMP 2018 bis 2024"],
+    qualifications: [
+      "Physiotherapeut",
+      "Sektoraler Heilpraktiker (Physiotherapie)",
+      "Manuelle Therapie",
+      "Manuelle Lymphdrainage",
+      "Lehrteam FAMP 2018 bis 2024",
+    ],
+    // TODO(client): no year confirmed for the sectoral Heilpraktiker permit, so no timeline entry
     timeline: [
       { period: "2009 bis 2012", text: "Ausbildung zum Physiotherapeuten, VPT Berufsfachschule Bad Birnbach" },
       { period: "2012", text: "Zertifizierung Manuelle Lymphdrainage" },

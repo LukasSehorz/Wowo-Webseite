@@ -26,12 +26,20 @@ export const site = {
     email: null as Pending,
   },
   legal: {
-    // TODO(client): VAT identification number, if there is one
+    // TODO(client): VAT identification number, if there is one. Under § 19 UStG there is
+    // usually none, then this line stays empty and only `smallBusinessNote` is filled in.
     vatId: null as Pending,
+    // TODO(client): confirm the wording of the small business rule for the imprint, e.g.
+    // „Kleinunternehmer nach § 19 UStG, es wird keine Umsatzsteuer ausgewiesen.“
+    smallBusinessNote: null as Pending,
     // TODO(client): supervisory authority for the professional title
     supervisoryAuthority: null as Pending,
   },
   manufacturerUrl: "https://www.formthotics.com/de_de",
+  // Therapist and retailer directory of the German distributor (ME & Friends AG). Only this
+  // path works: /therapeutenverzeichnis/ answers with a 301 to the start page. The
+  // manufacturer himself (formthotics.com) has no partner search for end customers.
+  partnerDirectoryUrl: "https://www.funktionelle-einlagen.de/haendlerverzeichnis/",
 } as const;
 
 export type NavItem = { label: string; href: string };

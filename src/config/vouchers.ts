@@ -1,4 +1,5 @@
-// Voucher pricing. All amounts are net prices in euro per voucher.
+// Voucher pricing. All amounts are final prices in euro per voucher. The client is a small
+// business under § 19 UStG and shows no VAT, so there is no VAT rate and no net/gross split.
 // TODO(client): confirm prices and tiers. While `pricesArePlaceholders` is true
 // the site shows the note „Preise in Abstimmung“ next to every price.
 
@@ -10,15 +11,9 @@ export type VolumeTier = {
   pricePerVoucher: number;
 };
 
-export type DeliveryFormat = {
-  id: "digital" | "print";
-  label: string;
-};
-
 export const vouchers = {
   pricesArePlaceholders: true,
   placeholderNote: "Preise in Abstimmung",
-  vatRate: 0.19,
   quantity: { min: 1, max: 500, default: 25, quickPicks: [10, 25, 50, 100] },
   tiers: [
     { id: "t1", label: "1 bis 9", min: 1, max: 9, pricePerVoucher: 149 },
@@ -26,10 +21,6 @@ export const vouchers = {
     { id: "t3", label: "25 bis 49", min: 25, max: 49, pricePerVoucher: 129 },
     { id: "t4", label: "ab 50", min: 50, max: null, pricePerVoucher: 119 },
   ] satisfies VolumeTier[],
-  deliveryFormats: [
-    { id: "digital", label: "Digital als PDF" },
-    { id: "print", label: "Gedruckte Karten" },
-  ] satisfies DeliveryFormat[],
   // TODO(client): confirm the response time promised after an order request (copy deck 3.6)
   responseTime: "zwei Werktagen",
   // Face of the voucher card (copy deck 1.9)

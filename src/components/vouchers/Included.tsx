@@ -41,11 +41,10 @@ export function Included() {
               <span className="display-stat">{formatNumber(lowest)}&nbsp;€</span>
             </p>
             <p className="mt-4 text-[1.0625rem] leading-normal text-white/85">{included.price.unit}</p>
-            {vouchers.pricesArePlaceholders ? (
-              <p className="mt-8 border-t border-line-dark pt-5 text-xs leading-normal text-steel-200">
-                {vouchers.placeholderNote}
-              </p>
-            ) : null}
+            <p className="mt-8 border-t border-line-dark pt-5 text-xs leading-normal text-steel-200">
+              {included.price.note}
+              {vouchers.pricesArePlaceholders ? <span className="mt-1.5 block">{vouchers.placeholderNote}</span> : null}
+            </p>
           </div>
         </Reveal>
       </Container>

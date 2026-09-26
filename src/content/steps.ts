@@ -48,7 +48,7 @@ export const fitting = typesetContent({
     {
       id: "kontrollieren",
       title: "Kontrollieren",
-      text: "Ein kurzer Gang zeigt, ob alles sitzt. In den ersten Tagen tragen Sie die Einlagen stundenweise. Drückt etwas, passen wir nach.",
+      text: "Ein kurzer Gang zeigt, ob alles sitzt. Danach können Sie die Einlagen direkt tragen. Drückt etwas, passen wir nach.",
       image: {
         src: "/media/images/step-4-kontrollieren.jpg",
         alt: "Eine Person geht in Sneakern den Praxisflur entlang, der Therapeut beobachtet den Gang",
@@ -73,7 +73,7 @@ export const voucherSteps = typesetContent({
     },
     {
       title: "Gutscheine verteilen",
-      text: "Jeder Gutschein trägt einen eigenen Code. Sie geben ihn digital oder gedruckt an Ihre Mitarbeitenden weiter.",
+      text: "Jeder Gutschein trägt einen eigenen Code. Sie erhalten die Gutscheine digital als PDF und geben sie an Ihre Mitarbeitenden weiter.",
     },
     {
       title: "Termin und Anpassung",

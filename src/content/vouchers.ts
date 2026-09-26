@@ -1,7 +1,12 @@
-// Copy deck section 3 (Gutscheine). Prices, tiers and formats live in src/config/vouchers.ts.
+// Copy deck section 3 (Gutscheine). Prices and tiers live in src/config/vouchers.ts.
 
 import type { IconName } from "@/components/ui/Icon";
 import { typesetContent } from "@/lib/format";
+
+/** § 19 UStG: the client shows no VAT, so every price on the site is a final price. */
+export const finalPriceNote = typesetContent(
+  "Alle Preise sind Endpreise. Nach § 19 UStG wird keine Umsatzsteuer ausgewiesen.",
+);
 
 export const vouchersHero = typesetContent({
   eyebrow: "Für Unternehmen",
@@ -22,7 +27,8 @@ export const included = typesetContent({
   ] satisfies { id: string; icon: IconName; label: string; value: string }[],
   price: {
     prefix: "ab",
-    unit: "je Gutschein, zuzüglich Umsatzsteuer",
+    unit: "je Gutschein",
+    note: finalPriceNote,
   },
 });
 
@@ -42,7 +48,6 @@ export const configurator = typesetContent({
   groups: {
     quantity: "Anzahl der Gutscheine",
     tiers: "Staffelpreise",
-    format: "Format der Gutscheine",
     details: "Ihre Angaben",
     message: "Nachricht",
   },
@@ -56,11 +61,9 @@ export const configurator = typesetContent({
   summary: {
     title: "Zusammenfassung",
     quantity: "Anzahl der Gutscheine",
-    format: "Format der Gutscheine",
     pricePerVoucher: "Preis je Gutschein",
-    subtotal: "Zwischensumme netto",
-    vat: "Umsatzsteuer",
-    total: "Gesamt brutto",
+    total: "Gesamt",
+    vatNote: finalPriceNote,
     note: "Unverbindliche Anfrage. Sie erhalten ein schriftliches Angebot, bevor eine Bestellung zustande kommt.",
   },
   fields: {

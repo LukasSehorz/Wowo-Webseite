@@ -33,7 +33,7 @@ for (const device of ['desktop', 'mobile']) {
   await submit.click();
   await page.locator('#field-company-error').waitFor();
   await sleep(700);
-  await page.evaluate(() => document.querySelector('#config-group-4').scrollIntoView({ block: 'start' }));
+  await page.evaluate(() => document.querySelector('#config-group-3').scrollIntoView({ block: 'start' }));
   await sleep(500);
   await page.screenshot({ path: join(out, `form-${device}-1-errors.png`) });
 

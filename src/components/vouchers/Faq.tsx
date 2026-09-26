@@ -1,10 +1,13 @@
 import { SplitHeading } from "@/components/motion/SplitHeading";
 import { Accordion } from "@/components/ui/Accordion";
 import { Container } from "@/components/ui/Container";
+import { Icon } from "@/components/ui/Icon";
 import { Section } from "@/components/ui/Section";
 import { Pending } from "@/components/ui/Pending";
+import { TextLink } from "@/components/ui/TextLink";
 import { site } from "@/config/site";
 import { faq, faqHeading } from "@/content/faq";
+import { ui } from "@/content/global";
 import { contact } from "@/content/vouchers";
 
 /**
@@ -27,7 +30,25 @@ export function Faq() {
               items={faq.map((item, index) => ({
                 id: `faq-${index + 1}`,
                 question: item.question,
-                answer: item.answer,
+                answer: item.link ? (
+                  <>
+                    {item.answer}
+                    <span className="mt-3 block">
+                      <TextLink href={item.link.href} external variant="cta" className="touch-target">
+                        {item.link.label}
+                        <Icon
+                          name="arrow-up-right"
+                          size={12}
+                          strokeWidth={1.6}
+                          className="ml-0.5 inline-block align-[-1px]"
+                        />
+                        <span className="sr-only"> ({ui.externalHint})</span>
+                      </TextLink>
+                    </span>
+                  </>
+                ) : (
+                  item.answer
+                ),
               }))}
             />
           </div>

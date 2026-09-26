@@ -107,7 +107,7 @@ Regeln für jede spätere Änderung:
   1. Untersuchen · Wir prüfen Fußform, Beweglichkeit, Beinachse und Gangbild und sehen uns Ihre Schuhe an. Danach wählen wir Modell und Härtegrad.
   2. Erwärmen · Die Einlagen liegen im Schuh, ein Warmluftgerät erwärmt beides zusammen. Der Heizzyklus dauert drei Minuten.
   3. Anformen · Sie ziehen die warmen Schuhe an und stehen 30 Sekunden mit leicht gebeugten Knien. Beim Abkühlen übernimmt der Schaum die Form von Fuß und Schuh.
-  4. Kontrollieren · Ein kurzer Gang zeigt, ob alles sitzt. In den ersten Tagen tragen Sie die Einlagen stundenweise. Drückt etwas, passen wir nach.
+  4. Kontrollieren · Ein kurzer Gang zeigt, ob alles sitzt. Danach können Sie die Einlagen direkt tragen. Drückt etwas, passen wir nach.
 
 ### 1.8 Forschung
 - Eyebrow: Forschung
@@ -203,7 +203,8 @@ Regeln für jede spätere Änderung:
 **Sebastian Rauscher**
 - Rolle: Physiotherapeut, Gründer
 - Kurztext: Sebastian Rauscher ist seit 2012 Physiotherapeut und seit 2018 in Manueller Therapie zertifiziert. Von 2018 bis 2024 unterrichtete er im Lehrteam der FAMP. Seit 2024 führt er seine eigene Privatpraxis für Physiotherapie.
-- Qualifikationen (Chips): Physiotherapeut · Manuelle Therapie · Manuelle Lymphdrainage · Lehrteam FAMP 2018 bis 2024
+- Qualifikationen (Chips): Physiotherapeut · Sektoraler Heilpraktiker (Physiotherapie) · Manuelle Therapie · Manuelle Lymphdrainage · Lehrteam FAMP 2018 bis 2024
+- Hinweis: Für den sektoralen Heilpraktiker ist kein Jahr bestätigt, deshalb steht er nur bei den Qualifikationen und nicht im Werdegang.
 - Werdegang:
   - 2009 bis 2012 · Ausbildung zum Physiotherapeuten, VPT Berufsfachschule Bad Birnbach
   - 2012 · Zertifizierung Manuelle Lymphdrainage
@@ -259,7 +260,7 @@ Regeln für jede spätere Änderung:
 - H2: In vier Schritten zum Gutschein
 1. Anzahl festlegen · Sie wählen die Zahl der Gutscheine und senden uns Ihre Bestellanfrage.
 2. Angebot und Rechnung · Wir bestätigen Menge und Preis schriftlich. Die Gutscheine erhalten Sie nach der Rechnungsstellung.
-3. Gutscheine verteilen · Jeder Gutschein trägt einen eigenen Code. Sie geben ihn digital oder gedruckt an Ihre Mitarbeitenden weiter.
+3. Gutscheine verteilen · Jeder Gutschein trägt einen eigenen Code. Sie erhalten die Gutscheine digital als PDF und geben sie an Ihre Mitarbeitenden weiter.
 4. Termin und Anpassung · Ihre Mitarbeitenden vereinbaren einen Termin. Untersuchung und Anpassung finden am selben Tag statt.
 
 ### 3.4 Leistungsumfang
@@ -270,7 +271,7 @@ Regeln für jede spätere Änderung:
   - Anpassung · Thermisch im eigenen Schuh
   - Feinjustierung · Keile und Pelotten nach Bedarf
   - Nachkontrolle · Erneutes Anformen bei Druckstellen
-- Preisbox: ab `[TODO(client)]` € je Gutschein, zuzüglich Umsatzsteuer · Hinweis klein: Preise in Abstimmung
+- Preisbox: ab `[TODO(client)]` € je Gutschein · Hinweis klein: Alle Preise sind Endpreise. Nach § 19 UStG wird keine Umsatzsteuer ausgewiesen. · Preise in Abstimmung
 
 ### 3.5 Für Arbeitgeber
 - H2: Warum Unternehmen bei den Füßen ansetzen
@@ -284,8 +285,9 @@ Regeln für jede spätere Änderung:
 - Label Anzahl: Anzahl der Gutscheine
 - Staffel (Überschrift): Staffelpreise
 - Staffelzeilen: 1 bis 9 · 10 bis 24 · 25 bis 49 · ab 50 (Preise `[TODO(client)]`, Platzhalter in `config/vouchers.ts`)
-- Label Format: Format der Gutscheine · Digital als PDF / Gedruckte Karten
-- Zusammenfassung: Preis je Gutschein · Zwischensumme netto · Umsatzsteuer 19 % · Gesamt brutto
+- Keine Formatauswahl: Die Gutscheine kommen nur digital, gedruckte Karten sind entfallen (Kundenkorrektur 26.09.2026). Der Konfigurator hat damit vier Gruppen: 01 Anzahl der Gutscheine · 02 Staffelpreise · 03 Ihre Angaben · 04 Nachricht.
+- Zusammenfassung: Anzahl der Gutscheine · Preis je Gutschein · Gesamt
+- Hinweis klein unter der Summe: Alle Preise sind Endpreise. Nach § 19 UStG wird keine Umsatzsteuer ausgewiesen.
 - Hinweis klein: Unverbindliche Anfrage. Sie erhalten ein schriftliches Angebot, bevor eine Bestellung zustande kommt.
 - Formularfelder: Unternehmen · Ansprechperson · E-Mail · Telefon (optional) · Nachricht (optional)
 - Einwilligung: Ich habe die Datenschutzerklärung gelesen und bin damit einverstanden, dass meine Angaben zur Bearbeitung der Anfrage verarbeitet werden.
@@ -298,11 +300,11 @@ Regeln für jede spätere Änderung:
 ### 3.7 Häufige Fragen
 - H2: Häufige Fragen
 1. Was ist im Gutschein enthalten? · Die Untersuchung durch einen Physiotherapeuten, ein Paar Formthotics in dem Modell, das zum Befund passt, die thermische Anpassung im eigenen Schuh und das Nachjustieren bei Druckstellen.
-2. Wo findet die Anpassung statt? · In unserer Praxis in Waldkraiburg. Für größere Teams kommen wir nach Absprache in Ihr Unternehmen. `[TODO(client)]`
+2. Wo findet die Anpassung statt? · In unserer Praxis in Waldkraiburg. Für größere Teams kommen wir nach Absprache in Ihr Unternehmen. Ihre Mitarbeitenden können den Gutschein auch bei einer Formthotics-Partnerpraxis in ihrer Nähe einlösen. Deutschlandweit sind das über 300 Praxen. Link „Partnerpraxis suchen“ → https://www.funktionelle-einlagen.de/haendlerverzeichnis/ (externer Link, neuer Tab) `[TODO(client)]` Ort und Vor-Ort-Termine bestätigen
 3. Wie lange dauert ein Termin? · Der Heizzyklus dauert drei Minuten, das Anformen 30 Sekunden. Mit Untersuchung und Kontrolle planen wir pro Person etwa eine halbe Stunde ein. `[TODO(client)]`
 4. Welche Schuhe eignen sich? · Schuhe mit herausnehmbarer Innensohle und festem Halt. Bringen Sie die Schuhe mit, die Sie im Alltag oder bei der Arbeit am häufigsten tragen.
 5. Können die Einlagen in Sicherheitsschuhen getragen werden? · In zertifizierten Sicherheitsschuhen dürfen nur Einlagen verwendet werden, die zusammen mit dem Schuh baumustergeprüft wurden. Wir klären vor der Anpassung, welche Ihrer Schuhe infrage kommen. Für Alltags- und Sportschuhe gilt diese Einschränkung nicht.
-6. Gibt es eine Eingewöhnung? · Ja. Tragen Sie die Einlagen in den ersten drei bis sieben Tagen etwa eine Stunde täglich und steigern Sie die Dauer danach. Anfangs können Druckstellen auftreten. In dem Fall passen wir nach.
+6. Gibt es eine Eingewöhnung? · Sie können die Einlagen direkt nach der Anpassung tragen. Je nach Fuß dauert es ein paar Tage, bis Sie sich an sie gewöhnt haben. Treten dabei Druckstellen auf, passen wir nach.
 7. Wie lange halten die Einlagen? · Der Hersteller nennt 12 bis 24 Monate, abhängig von Belastung und Körpergewicht. In einer Studie verringerten über ein Jahr getragene Einlagen den Fersendruck noch um 18 %, neue um 23 % (Cronkwright DG et al., Gait & Posture 2011. Untersucht wurden Formthotics).
 8. Wie lange sind die Gutscheine gültig? · Drei Jahre ab dem Ende des Jahres, in dem der Gutschein ausgestellt wurde. `[TODO(client)]`
 9. Wie werden die Gutscheine steuerlich behandelt? · Das hängt von Ihrer betrieblichen Situation ab. Bitte klären Sie die Einordnung mit Ihrer Steuerberatung.
@@ -316,5 +318,5 @@ Regeln für jede spätere Änderung:
 
 ## 4 Rechtliche Seiten (Platzhalter)
 
-- Impressum: Überschrift „Impressum“, darunter ein klar markierter Platzhalterblock mit den nötigen Angaben nach § 5 DDG (Name der GbR, vertretungsberechtigte Gesellschafter Sebastian Rauscher und Wolfgang Brandmaier, Anschrift, Telefon, E-Mail, Umsatzsteuer-ID falls vorhanden, Berufsbezeichnung Physiotherapeut, verliehen in Deutschland, zuständige Aufsichtsbehörde). Alle Werte `[TODO(client)]`.
+- Impressum: Überschrift „Impressum“, darunter ein klar markierter Platzhalterblock mit den nötigen Angaben nach § 5 DDG (Name der GbR, vertretungsberechtigte Gesellschafter Sebastian Rauscher und Wolfgang Brandmaier, Anschrift, Telefon, E-Mail, Umsatzsteuer-ID falls vorhanden, Zeile „Umsatzsteuer“ für den Hinweis auf die Kleinunternehmerregelung nach § 19 UStG, Berufsbezeichnung Physiotherapeut, verliehen in Deutschland, zuständige Aufsichtsbehörde). Alle Werte `[TODO(client)]`.
 - Datenschutz: Überschrift „Datenschutzerklärung“, Platzhalterblock mit den Punkten Verantwortliche Stelle, Hosting, Server-Logfiles, Bestellanfrage-Formular (Zweck, Rechtsgrundlage Art. 6 Abs. 1 lit. b DSGVO, Speicherdauer), Rechte der Betroffenen. Hinweis im Code: muss vor dem Livegang juristisch geprüft werden. Die Seite setzt keine Cookies und lädt keine Inhalte von Drittanbietern.

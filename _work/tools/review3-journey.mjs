@@ -60,18 +60,16 @@ await page.locator('main a', { hasText: 'So funktioniert es' }).first().click().
 await sleep(1200);
 note('"So funktioniert es" → #ablauf top', await topOf('#ablauf'));
 
-// 6. configure: quantity 40 via input, format printed
+// 6. configure: quantity 40 via input (the format choice was removed with the printed cards)
 await page.evaluate(() => document.getElementById('anfrage').scrollIntoView({ behavior: 'instant' }));
 await sleep(800);
 const qty = page.locator('#anfrage input[type="text"], #anfrage input[inputmode="numeric"]').first();
 await qty.fill('40');
 await page.keyboard.press('Enter');
 await sleep(600);
-await page.locator('#anfrage label', { hasText: 'Gedruckte Karten' }).first().click();
-await sleep(800);
 const summary = await page.evaluate(() => document.querySelector('aside[aria-labelledby="summary-heading"]')?.innerText.replace(/\s+/g, ' ').slice(0, 300));
-note('summary after qty 40 + printed:', summary);
-await page.screenshot({ path: `${out}/06-configured-40-printed.png` });
+note('summary after qty 40:', summary);
+await page.screenshot({ path: `${out}/06-configured-40.png` });
 
 // 7. submit empty → validation
 await page.locator('aside button[type="submit"]').click();

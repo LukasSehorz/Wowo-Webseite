@@ -56,15 +56,17 @@ const controls = (page) =>
     pressed: Array.from(document.querySelectorAll('#anfrage button[aria-pressed="true"]')).map((b) => b.textContent.trim()).join(','),
   }));
 
-async function expectQuote(page, name, quantity, tier, per, subtotal, vat, total) {
+// § 19 UStG: the summary shows the price per voucher and one total, no VAT lines at all.
+async function expectQuote(page, name, quantity, tier, per, total) {
   await sleep(900);
   const c = await controls(page);
   const s = await summary(page);
   const synced = c.input === String(quantity) && c.slider === String(quantity) && c.hidden === String(quantity) && c.tier === tier;
-  const maths =
-    s['Preis je Gutschein'] === per && s['Zwischensumme netto'] === subtotal && s['Umsatzsteuer 19 %'] === vat && s['Gesamt brutto'] === total;
+  const maths = s['Preis je Gutschein'] === per && s['Gesamt'] === total;
+  const noVat = !Object.keys(s).some((label) => /Umsatzsteuer|netto|brutto|Format/.test(label));
   ok(`${name}: controls in sync (${quantity}, tier ${tier})`, synced, JSON.stringify(c));
-  ok(`${name}: ${per} · ${subtotal} · ${vat} · ${total}`, maths, JSON.stringify(s));
+  ok(`${name}: ${per} · ${total}`, maths, JSON.stringify(s));
+  ok(`${name}: summary carries neither a VAT nor a format line`, noVat, Object.keys(s).join(' | '));
 }
 
 async function vouchersDesktop(browser) {
@@ -98,12 +100,12 @@ async function vouchersDesktop(browser) {
   ok('hero pill scrolls to the configurator', Math.abs(formTop - 97) <= 3, `top ${formTop}`);
 
   // maths and sync
-  await expectQuote(page, 'default', 25, '25 bis 49', '129,00 €', '3.225,00 €', '612,75 €', '3.837,75 €');
+  await expectQuote(page, 'default', 25, '25 bis 49', '129,00 €', '3.225,00 €');
   await page.getByRole('button', { name: '50', exact: true }).click();
-  await expectQuote(page, 'quick pick 50', 50, 'ab 50', '119,00 €', '5.950,00 €', '1.130,50 €', '7.080,50 €');
+  await expectQuote(page, 'quick pick 50', 50, 'ab 50', '119,00 €', '5.950,00 €');
   ok('quick pick shows its pressed state', (await controls(page)).pressed === '50');
   await page.getByRole('button', { name: 'Anzahl verringern' }).click();
-  await expectQuote(page, 'stepper minus', 49, '25 bis 49', '129,00 €', '6.321,00 €', '1.200,99 €', '7.521,99 €');
+  await expectQuote(page, 'stepper minus', 49, '25 bis 49', '129,00 €', '6.321,00 €');
 
   const rolled = await page.evaluate(() => {
     const dd = document.querySelector('[data-total]');
@@ -114,15 +116,15 @@ async function vouchersDesktop(browser) {
   const slider = page.locator('#anfrage input[type="range"]');
   await slider.focus();
   await page.keyboard.press('Home');
-  await expectQuote(page, 'slider Home key', 1, '1 bis 9', '149,00 €', '149,00 €', '28,31 €', '177,31 €');
+  await expectQuote(page, 'slider Home key', 1, '1 bis 9', '149,00 €', '149,00 €');
   ok('minus button is disabled at the minimum', await page.getByRole('button', { name: 'Anzahl verringern' }).isDisabled());
   for (let i = 0; i < 9; i++) await page.keyboard.press('ArrowRight');
-  await expectQuote(page, 'slider arrow keys', 10, '10 bis 24', '139,00 €', '1.390,00 €', '264,10 €', '1.654,10 €');
+  await expectQuote(page, 'slider arrow keys', 10, '10 bis 24', '139,00 €', '1.390,00 €');
 
   const direct = page.locator('#anfrage input[inputmode="numeric"]');
   await direct.fill('600');
   await direct.blur();
-  await expectQuote(page, 'direct input above the maximum', 500, 'ab 50', '119,00 €', '59.500,00 €', '11.305,00 €', '70.805,00 €');
+  await expectQuote(page, 'direct input above the maximum', 500, 'ab 50', '119,00 €', '59.500,00 €');
   await direct.fill('');
   await direct.blur();
   ok('emptied input falls back to the last valid quantity', (await direct.inputValue()) === '500');
@@ -138,17 +140,30 @@ async function vouchersDesktop(browser) {
     (await direct.inputValue()) === '120' && (await page.locator('#anfrage form [id$="-error"]').count()) === 0,
   );
   const live = await page.locator('[data-total] [aria-live="polite"]').textContent();
-  ok('the gross total is announced to screen readers', norm(live) === '16.993,20 €', norm(live));
+  ok('the total is announced to screen readers', norm(live) === '14.280,00 €', norm(live));
 
   await page.locator('#anfrage label', { hasText: '1 bis 9' }).click();
-  await expectQuote(page, 'tier chip 1 bis 9', 1, '1 bis 9', '149,00 €', '149,00 €', '28,31 €', '177,31 €');
+  await expectQuote(page, 'tier chip 1 bis 9', 1, '1 bis 9', '149,00 €', '149,00 €');
   await page.locator('#anfrage input[name="tier"]:checked').focus();
   await page.keyboard.press('ArrowRight');
-  await expectQuote(page, 'tier radio with the arrow key', 10, '10 bis 24', '139,00 €', '1.390,00 €', '264,10 €', '1.654,10 €');
+  await expectQuote(page, 'tier radio with the arrow key', 10, '10 bis 24', '139,00 €', '1.390,00 €');
 
-  await page.locator('#anfrage label', { hasText: 'Gedruckte Karten' }).click();
-  await sleep(200);
-  ok('format choice reaches the summary', (await summary(page))['Format der Gutscheine'] === 'Gedruckte Karten');
+  // the client dropped printed cards, so there is no format choice any more
+  ok(
+    'no format choice in the configurator',
+    (await page.locator('#anfrage input[name="format"]').count()) === 0 &&
+      !(await page.locator('#anfrage').textContent()).includes('Gedruckte Karten'),
+  );
+  const groupNumbers = await page.evaluate(() =>
+    Array.from(document.querySelectorAll('#anfrage form h3 > span[aria-hidden="true"]')).map((s) => s.textContent.trim()),
+  );
+  ok('configurator groups are numbered without a gap', groupNumbers.join(',') === '01,02,03,04', groupNumbers.join(','));
+  ok(
+    'the summary states that prices are final prices',
+    norm(await page.locator('aside[aria-labelledby="summary-heading"]').textContent()).includes(
+      '§ 19 UStG wird keine Umsatzsteuer ausgewiesen',
+    ),
+  );
 
   // validation
   const submit = page.locator('aside').getByRole('button', { name: 'Bestellanfrage senden' });
@@ -166,11 +181,10 @@ async function vouchersDesktop(browser) {
   ok('focus moves to the first invalid field', (await page.evaluate(() => document.activeElement?.id)) === 'field-company');
   ok('invalid fields are marked for assistive technology', (await page.locator('#anfrage [aria-invalid="true"]').count()) === 4);
   const kept = await controls(page);
-  const keptFormat = await page.evaluate(() => document.querySelector('#anfrage input[name="format"]:checked')?.value);
   ok(
-    'configuration survives a rejected submit (quantity, slider, tier, format)',
-    kept.input === '10' && kept.slider === '10' && kept.hidden === '10' && kept.tier === '10 bis 24' && keptFormat === 'print' && (await summary(page))['Format der Gutscheine'] === 'Gedruckte Karten',
-    `${JSON.stringify(kept)} format ${keptFormat}`,
+    'configuration survives a rejected submit (quantity, slider, tier)',
+    kept.input === '10' && kept.slider === '10' && kept.hidden === '10' && kept.tier === '10 bis 24',
+    JSON.stringify(kept),
   );
 
   await page.locator('#field-company').fill('Muster GmbH');
@@ -197,9 +211,14 @@ async function vouchersDesktop(browser) {
   await sleep(500);
   const successText = norm(await page.locator('#anfrage').textContent());
   ok('success view replaces the form', (await page.locator('#anfrage form').count()) === 0 && (await page.locator('aside[aria-labelledby="summary-heading"]').count()) === 0);
-  const parts = ['Muster GmbH', 'Erika Muster', 'erika@muster.example', '+49 8638 000000', 'Gedruckte Karten', '1.654,10 €', 'Bitte Angebot für zwei Standorte.', 'zwei Werktagen'];
+  const parts = ['Muster GmbH', 'Erika Muster', 'erika@muster.example', '+49 8638 000000', '139,00 €', '1.390,00 €', 'Bitte Angebot für zwei Standorte.', 'zwei Werktagen'];
   const missing = parts.filter((part) => !successText.includes(part));
   ok('success view repeats the request', missing.length === 0, `missing: ${missing.join(' | ')}`);
+  ok(
+    'success view shows no VAT and no format',
+    !/Umsatzsteuer 19|netto|brutto|Gedruckte Karten|Format der Gutscheine/.test(successText) &&
+      successText.includes('§ 19 UStG wird keine Umsatzsteuer ausgewiesen'),
+  );
   ok('focus lands on the confirmation', (await page.evaluate(() => document.activeElement?.textContent)) === 'Ihre Anfrage ist eingegangen');
   if (before !== null) {
     await sleep(500);
@@ -299,7 +318,7 @@ async function vouchersMobile(browser) {
   await page.getByRole('button', { name: '100', exact: true }).tap();
   await sleep(900);
   const barTotal = norm(await bar.locator('.sr-only').textContent());
-  ok('mobile: bar shows the gross total', barTotal === '14.161,00 €', barTotal);
+  ok('mobile: bar shows the total', barTotal === '11.900,00 €', barTotal);
   const box = await bar.boundingBox();
   ok('mobile: bar sits on the bottom edge', box && Math.round(box.y + box.height) === 844, JSON.stringify(box));
 
@@ -525,7 +544,7 @@ async function reducedMotion(browser) {
   await page.getByRole('button', { name: '100', exact: true }).click();
   await sleep(60);
   const instant = await page.evaluate(() => document.querySelector('[data-total] [aria-hidden]').textContent.replace(/ /g, ' '));
-  ok('reduced motion: totals change at once', instant === '14.161,00 €', instant);
+  ok('reduced motion: totals change at once', instant === '11.900,00 €', instant);
   ok('reduced motion: no console errors', problems.length === 0, problems.slice(0, 4).join(' | '));
   await context.close();
 }

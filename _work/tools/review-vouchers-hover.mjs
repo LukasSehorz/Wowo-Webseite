@@ -19,7 +19,7 @@ async function strip(name, locator, pad = 16) {
   return cs;
 }
 console.log('tier chip hover', JSON.stringify(await strip('tier', page.locator('#anfrage label', { hasText: '10 bis 24' }))));
-console.log('format hover', JSON.stringify(await strip('format', page.locator('#anfrage label', { hasText: 'Gedruckte Karten' }))));
+// the format choice was removed with the printed cards, so there is no format option to hover
 console.log('quick hover', JSON.stringify(await strip('quick', page.locator('#anfrage button', { hasText: /^50$/ }))));
 console.log('stepper hover', JSON.stringify(await strip('stepper', page.locator('#anfrage button[aria-label="Anzahl erhöhen"]'))));
 console.log('submit hover', JSON.stringify(await strip('submit', page.locator('#anfrage button[type=submit]').first(), 24)));

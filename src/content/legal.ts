@@ -20,7 +20,10 @@ export const imprint = {
     { label: "Anschrift", value: site.contact.address },
     { label: "Telefon", value: site.contact.phone },
     { label: "E-Mail", value: site.contact.email },
+    // TODO(client): the client works under § 19 UStG and shows no VAT. Either leave the VAT ID
+    // empty and note the small business rule here, or fill in the ID if there is one.
     { label: "Umsatzsteuer-ID", value: site.legal.vatId },
+    { label: "Umsatzsteuer", value: site.legal.smallBusinessNote },
     { label: "Berufsbezeichnung", value: "Physiotherapeut, verliehen in Deutschland" },
     { label: "Zuständige Aufsichtsbehörde", value: site.legal.supervisoryAuthority },
   ] satisfies LegalItem[],

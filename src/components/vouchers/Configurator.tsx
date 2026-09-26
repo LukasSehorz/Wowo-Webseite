@@ -11,7 +11,7 @@ import { Section } from "@/components/ui/Section";
 import { vouchers } from "@/config/vouchers";
 import { configurator } from "@/content/vouchers";
 import { formatNumber } from "@/lib/format";
-import { clampQuantity, quote, type FormatId, type OrderState } from "@/lib/order";
+import { clampQuantity, quote, type OrderState } from "@/lib/order";
 import { ConfigGroup } from "./ConfigGroup";
 import { OrderForm } from "./OrderForm";
 import { OrderSuccess } from "./OrderSuccess";
@@ -34,7 +34,6 @@ export function Configurator() {
   const [quantity, setQuantity] = useState<number>(vouchers.quantity.default);
   // text of the direct input while it is being edited; `null` shows the quantity
   const [draft, setDraft] = useState<string | null>(null);
-  const [format, setFormat] = useState<FormatId>(vouchers.deliveryFormats[0].id);
   // the mobile action bar shows from the moment the configurator enters until it has left the
   // viewport, so the summary card never sits on screen without a submit button (R3-01)
   const inView = useInView(section, { margin: "-25% 0px 0px 0px" });
@@ -42,13 +41,24 @@ export function Configurator() {
   const price = quote(quantity);
   const done = state.status === "success";
   // React resets a form after its action. Controlled radios then fall back to the `checked` they were
-  // mounted with, so both radio groups are re-created per attempt and always mount with the current choice.
+  // mounted with, so the tier group is re-created per attempt and always mounts with the current choice.
   const attempt = state.status === "success" ? 0 : state.attempt;
 
-  // After a rejected submit the first problem receives focus (and scrolls into view).
+  // After a rejected submit the first problem receives focus. `focus()` alone scrolls the field
+  // only just into view, where the fixed action bar covers it on small screens, so the field is
+  // centred afterwards whenever it would sit behind the bar.
   useEffect(() => {
-    if (state.status === "invalid") form.current?.querySelector<HTMLElement>('[aria-invalid="true"]')?.focus();
-    if (state.status === "failed") form.current?.querySelector<HTMLElement>("[data-form-error]")?.focus();
+    const target =
+      state.status === "invalid"
+        ? form.current?.querySelector<HTMLElement>('[aria-invalid="true"]')
+        : state.status === "failed"
+          ? form.current?.querySelector<HTMLElement>("[data-form-error]")
+          : null;
+    if (!target) return;
+    target.focus();
+    const bar = document.querySelector<HTMLElement>("[data-order-bar]");
+    const covered = window.innerHeight - (bar?.getBoundingClientRect().height ?? 0);
+    if (target.getBoundingClientRect().bottom > covered) target.scrollIntoView({ block: "center" });
   }, [state]);
 
   const change = (next: number) => {
@@ -200,40 +210,15 @@ export function Configurator() {
                 </div>
               </ConfigGroup>
 
-              <ConfigGroup index={3} title={configurator.groups.format} role="radiogroup">
-                {/* one column again while the form column is narrow beside the summary (1024 to 1279 px) */}
-                <div key={attempt} className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
-                  {vouchers.deliveryFormats.map((item) => (
-                    <label key={item.id} className="option items-center gap-3.5 px-5 py-[18px]">
-                      <input
-                        type="radio"
-                        name="format"
-                        value={item.id}
-                        checked={format === item.id}
-                        onChange={() => setFormat(item.id)}
-                        className="peer sr-only"
-                      />
-                      <span
-                        aria-hidden="true"
-                        className="flex size-[18px] shrink-0 items-center justify-center rounded-full border border-ink/40 transition-colors duration-150 peer-checked:border-olive-600 peer-checked:[&>span]:scale-100"
-                      >
-                        <span className="size-2.5 scale-0 rounded-full bg-olive-600 transition-transform duration-150" />
-                      </span>
-                      <span className="text-base leading-tight font-medium">{item.label}</span>
-                    </label>
-                  ))}
-                </div>
-              </ConfigGroup>
-
               <OrderForm state={state} />
             </form>
 
-            <OrderSummary formId={formId} price={price} format={format} pending={pending} />
+            <OrderSummary formId={formId} price={price} pending={pending} />
           </div>
         )}
       </Container>
 
-      {done ? null : <OrderBar formId={formId} price={price} format={format} pending={pending} visible={inView} />}
+      {done ? null : <OrderBar formId={formId} price={price} pending={pending} visible={inView} />}
     </Section>
   );
 }

@@ -58,3 +58,6 @@ next-env.d.ts
 
 # Netlify build output
 /.netlify/
+
+# Reste des urspruenglichen Setups, von OneDrive wiederhergestellt
+/scaffold-tmp/

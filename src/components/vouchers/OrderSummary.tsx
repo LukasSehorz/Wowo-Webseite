@@ -7,29 +7,23 @@ import { Button } from "@/components/ui/Button";
 import { vouchers } from "@/config/vouchers";
 import { configurator } from "@/content/vouchers";
 import { formatNumber } from "@/lib/format";
-import { formatEuro, formatLabel, vatPercent, type FormatId, type Quote } from "@/lib/order";
+import { formatEuro, type Quote } from "@/lib/order";
 import { useIsClient } from "@/lib/use-is-client";
 
 type SummaryProps = {
   formId: string;
   price: Quote;
-  format: FormatId;
   pending: boolean;
 };
 
 const { summary } = configurator;
 
 /**
- * Sticky summary on mist: choice, price lines, gross total in the display voice with rolling
- * numbers, and the one olive button of the site. Below 1024 px the button moves into OrderBar.
+ * Sticky summary on mist: quantity, price per voucher, the total in the display voice with
+ * rolling numbers, and the one olive button of the site. Prices are final prices (§ 19 UStG),
+ * so there is no VAT line. Below 1024 px the button moves into OrderBar.
  */
-export function OrderSummary({ formId, price, format, pending }: SummaryProps) {
-  const lines = [
-    { label: summary.pricePerVoucher, value: price.pricePerVoucher },
-    { label: summary.subtotal, value: price.subtotal },
-    { label: `${summary.vat} ${vatPercent}`, value: price.vat },
-  ];
-
+export function OrderSummary({ formId, price, pending }: SummaryProps) {
   return (
     <aside aria-labelledby="summary-heading" className="rounded-card bg-mist p-6 lg:sticky lg:top-[105px] xl:p-8">
       <h3 id="summary-heading" className="title-sm">
@@ -44,17 +38,11 @@ export function OrderSummary({ formId, price, format, pending }: SummaryProps) {
           </dd>
         </div>
         <div className="flex justify-between gap-6 border-t border-line py-3">
-          <dt className="text-slate-500">{summary.format}</dt>
-          <dd className="text-right font-medium">{formatLabel(format)}</dd>
+          <dt className="text-slate-500">{summary.pricePerVoucher}</dt>
+          <dd className="font-medium whitespace-nowrap tabular-nums">
+            <RollingNumber value={price.pricePerVoucher} format={formatEuro} />
+          </dd>
         </div>
-        {lines.map((line) => (
-          <div key={line.label} className="flex justify-between gap-6 border-t border-line py-3">
-            <dt className="text-slate-500">{line.label}</dt>
-            <dd className="font-medium whitespace-nowrap tabular-nums">
-              <RollingNumber value={line.value} format={formatEuro} />
-            </dd>
-          </div>
-        ))}
         <div className="border-t border-ink/25 pt-5">
           <dt className="eyebrow text-slate-500">{summary.total}</dt>
           <dd className="display-figure mt-2 whitespace-nowrap" data-total="">
@@ -63,7 +51,8 @@ export function OrderSummary({ formId, price, format, pending }: SummaryProps) {
         </div>
       </dl>
 
-      <p className="source-line mt-5">{summary.note}</p>
+      <p className="source-line mt-5">{summary.vatNote}</p>
+      <p className="source-line mt-1.5">{summary.note}</p>
       {vouchers.pricesArePlaceholders ? <p className="source-line mt-1.5">{vouchers.placeholderNote}</p> : null}
 
       <Button
@@ -94,6 +83,7 @@ export function OrderBar({ formId, price, pending, visible }: BarProps) {
 
   return createPortal(
     <div
+      data-order-bar=""
       inert={!visible}
       className={clsx(
         "fixed inset-x-0 bottom-0 z-30 border-t border-line bg-white/97 backdrop-blur-[6px] transition-transform duration-500 ease-ui lg:hidden",
