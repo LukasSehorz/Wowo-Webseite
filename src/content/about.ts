@@ -6,7 +6,7 @@ import { typesetContent } from "@/lib/format";
 export const aboutHero = typesetContent({
   eyebrow: "Über uns",
   headline: ["Erst der Befund,", "dann die Einlage"],
-  text: "Hinter Brandmaier & Rauscher stehen zwei Physiotherapeuten mit zusammen 20 Jahren Berufserfahrung. Wir passen Einlagen so an, wie wir behandeln. Am Anfang steht die Untersuchung.",
+  text: "Hinter Brandlmaier & Rauscher stehen zwei Physiotherapeuten mit zusammen 20 Jahren Berufserfahrung. Wir passen Einlagen so an, wie wir behandeln. Am Anfang steht die Untersuchung.",
   image: {
     src: "/media/images/about-hero.jpg",
     alt: "Praxisraum mit hellblauen Einlagen, Sneakern und Warmluftgerät auf einer Holzbank, im Hintergrund arbeitet ein Therapeut an der Behandlungsliege",
@@ -21,7 +21,7 @@ export const story = typesetContent({
   heading: "Aus der Praxis entstanden",
   paragraphs: [
     "2018 gründete Sebastian Rauscher die erste GbR für funktionelle Schuheinlagen. Im selben Jahr kam er in das Lehrteam der Fortbildungsakademie Markus Pschick (FAMP). Dort unterrichtete er bis 2024 Manuelle Therapie und die Versorgung mit funktionellen Einlagen.",
-    "2026 stieg Wolfgang Brandmaier ein. Er arbeitet seit 2021 mit den Spielern des Regionalligisten TSV Buchbach und kennt aus dem betrieblichen Gesundheitsmanagement die Belastungen am Arbeitsplatz. Seitdem führen beide das Unternehmen gemeinsam.",
+    "2026 stieg Wolfgang Brandlmaier ein. Er arbeitet seit 2021 mit den Spielern des Regionalligisten TSV Buchbach und kennt aus dem betrieblichen Gesundheitsmanagement die Belastungen am Arbeitsplatz. Seitdem führen beide das Unternehmen gemeinsam.",
   ],
   image: {
     src: "/media/images/about-detail.jpg",

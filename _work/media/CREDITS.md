@@ -1,4 +1,4 @@
-# Media credits – Brandmaier & Rauscher GbR (Einlagen)
+# Media credits – Brandlmaier & Rauscher GbR (Einlagen)
 
 Stand: 2026-09-17 · 12 stock videos in `public/media/videos/`, 12 stock photos in `public/media/images/`.
 All assets are real footage/photography from free stock libraries whose licenses allow **commercial use without attribution**.

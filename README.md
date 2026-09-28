@@ -1,4 +1,4 @@
-# Brandmaier & Rauscher GbR · Einlagen
+# Brandlmaier & Rauscher GbR · Einlagen
 
 Marketing-Website (Next.js 16, App Router, Tailwind CSS 4, GSAP, Motion). Drei Seiten (`/`, `/ueber-uns`, `/gutscheine`) plus die rechtlichen Platzhalterseiten `/impressum` und `/datenschutz`.
 

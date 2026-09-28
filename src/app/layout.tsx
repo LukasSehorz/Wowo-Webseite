@@ -31,7 +31,7 @@ const organization = {
   "@type": "Organization",
   name: site.name,
   url: site.url,
-  logo: new URL("/brand/logo-full.png", site.url).toString(),
+  logo: new URL("/brand/mark.png", site.url).toString(),
   founder: site.founders.map((name) => ({ "@type": "Person", name })),
   ...(site.contact.email ? { email: site.contact.email } : {}),
   ...(site.contact.phone ? { telephone: site.contact.phone } : {}),

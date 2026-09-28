@@ -14,7 +14,7 @@ import { hero } from "@/content/home";
 export function Hero() {
   return (
     <section className="hero-screen relative isolate text-white">
-      <div className="shell pointer-events-none relative z-10 flex h-full flex-col items-center justify-end pb-[clamp(40px,3.37vw,64px)] text-center *:pointer-events-auto">
+      <div className="shell pointer-events-none relative z-10 flex h-full flex-col items-center justify-center pt-header pb-[calc(var(--radius-sheet)+24px)] text-center *:pointer-events-auto">
         <SplitHeading as="h1" lines={hero.headline} onMedia className="display display-hero max-w-[900px]" />
         <p className="hero-sub mt-5 max-w-[640px] md:mt-6">{hero.subline}</p>
         <div className="mt-7 flex flex-wrap items-center justify-center gap-x-5 gap-y-4 md:mt-8">

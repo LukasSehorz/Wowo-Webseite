@@ -6,7 +6,9 @@
 
 export const HEEL_PEAK_WITHOUT = 214.1;
 export const HEEL_PEAK_WITH = 172.5;
-export const SCALE_MAX = 232; // kPa at the top of the colour ramp
+// kPa at the top of the colour ramp. Slightly below the unsupported heel peak, so that peak reads
+// as a white-hot spot and the difference to the moulded state is easy to see.
+export const SCALE_MAX = 218;
 
 const FOOT_W = 0.385;
 
@@ -59,8 +61,8 @@ function contactDistance(x: number, y: number, t: number) {
   const heel = sdEllipse(x, y, 0.2, 0.868, 0.118, 0.122);
   const fore = sdEllipse(x, y, 0.192, 0.305, 0.182, 0.098, -0.2);
   // midfoot isthmus: a lateral band without support, widening medially as the moulded contour fills the arch
-  const mx = lerp(0.268, 0.222, t);
-  const midfoot = sdCapsule(x, y, mx - 0.012, 0.75, mx + 0.012, 0.43, lerp(0.062, 0.108, t));
+  const mx = lerp(0.276, 0.214, t);
+  const midfoot = sdCapsule(x, y, mx - 0.012, 0.75, mx + 0.012, 0.43, lerp(0.05, 0.12, t));
   const sole = smin(smin(heel, midfoot, 0.05), fore, 0.05);
   const toes = Math.min(
     sdEllipse(x, y, 0.082, 0.088, 0.05, 0.064, -0.08),
@@ -76,9 +78,9 @@ const gauss = (x: number, y: number, cx: number, cy: number, sx: number, sy: num
   Math.exp(-((x - cx) ** 2 / (2 * sx * sx) + (y - cy) ** 2 / (2 * sy * sy)));
 
 function pressureAt(x: number, y: number, t: number) {
-  let p = lerp(HEEL_PEAK_WITHOUT, HEEL_PEAK_WITH, t) * gauss(x, y, 0.2, 0.875, lerp(0.062, 0.078, t), lerp(0.066, 0.082, t));
+  let p = lerp(HEEL_PEAK_WITHOUT, HEEL_PEAK_WITH, t) * gauss(x, y, 0.2, 0.875, lerp(0.054, 0.086, t), lerp(0.058, 0.09, t));
   p += lerp(62, 74, t) * gauss(x, y, 0.275, 0.6, 0.05, 0.13); // lateral midfoot
-  p += lerp(0, 56, t) * gauss(x, y, 0.15, 0.6, 0.055, 0.12); // medial arch
+  p += lerp(0, 74, t) * gauss(x, y, 0.15, 0.6, 0.058, 0.13); // medial arch
   p += 150 * gauss(x, y, 0.085, 0.325, 0.05, 0.055); // metatarsal head 1
   p += 170 * gauss(x, y, 0.2, 0.29, 0.06, 0.055); // metatarsal heads 2-3
   p += 115 * gauss(x, y, 0.315, 0.335, 0.05, 0.055); // metatarsal heads 4-5

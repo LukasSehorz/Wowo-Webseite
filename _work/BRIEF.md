@@ -1,4 +1,4 @@
-# Build Brief · Brandmaier & Rauscher GbR · Einlagen
+# Build Brief · Brandlmaier & Rauscher GbR · Einlagen
 
 Single source of truth for the builder. Read these companion files completely before writing code:
 
@@ -93,7 +93,7 @@ One family: **Poppins** via `next/font/google`, weights 400, 500, 600, 800, 900,
 
 `logo-full.png` (color, for light surfaces), `logo-full-white.png`, `logo-full-duo.png` (pale steel plus light olive, for dark surfaces), and the runner alone as `mark.png`, `mark-white.png`, `mark-duo.png`. App icons exist in `src/app/`.
 
-Header lockup: runner mark 40 px high plus live text in two lines. Line 1 `BRANDMAIER & RAUSCHER` (600, uppercase, `letter-spacing: .06em`, 13 px), line 2 `Einlagen` (400, `letter-spacing: .18em`, 11 px, sentence case). Over the hero `mark-white.png` with white text, on the solid header `mark.png` with `ink` text. Cross-fade both versions by opacity as the reference does. The footer shows `logo-full-duo.png`.
+Header lockup: runner mark 40 px high plus live text in two lines. Line 1 `BRANDLMAIER & RAUSCHER` (600, uppercase, `letter-spacing: .06em`, 13 px), line 2 `Einlagen` (400, `letter-spacing: .18em`, 11 px, sentence case). Over the hero `mark-white.png` with white text, on the solid header `mark.png` with `ink` text. Cross-fade both versions by opacity as the reference does. The footer shows `logo-full-duo.png`.
 
 ## 4. Motion system
 

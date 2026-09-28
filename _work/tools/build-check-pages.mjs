@@ -77,7 +77,7 @@ async function vouchersDesktop(browser) {
   await sleep(1000);
 
   ok('vouchers: one h1', (await page.locator('h1').count()) === 1);
-  ok('vouchers: title from the copy deck', (await page.title()) === 'Einlagen-Gutscheine für Unternehmen | Brandmaier & Rauscher');
+  ok('vouchers: title from the copy deck', (await page.title()) === 'Einlagen-Gutscheine für Unternehmen | Brandlmaier & Rauscher');
   ok('vouchers: no horizontal overflow at 1440', (await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth)) <= 0);
 
   // R2-02: the voucher card is the hero object of its panel
@@ -502,9 +502,9 @@ async function otherPages(browser) {
     const page = await context.newPage();
     const problems = watch(page);
     for (const [path, title] of [
-      ['/ueber-uns', 'Über uns | Brandmaier & Rauscher Einlagen'],
-      ['/impressum', 'Impressum | Brandmaier & Rauscher Einlagen'],
-      ['/datenschutz', 'Datenschutzerklärung | Brandmaier & Rauscher Einlagen'],
+      ['/ueber-uns', 'Über uns | Brandlmaier & Rauscher Einlagen'],
+      ['/impressum', 'Impressum | Brandlmaier & Rauscher Einlagen'],
+      ['/datenschutz', 'Datenschutzerklärung | Brandlmaier & Rauscher Einlagen'],
     ]) {
       await page.goto(`${base}${path}`, { waitUntil: 'networkidle' });
       const height = await page.evaluate(() => document.documentElement.scrollHeight);
