@@ -112,48 +112,111 @@ Regeln für jede spätere Änderung:
 ### 1.8 Forschung
 - Eyebrow: Forschung
 - H2: Was Studien zeigen und was nicht
-- Text: Mehrere unabhängige Universitätsgruppen haben Formthotics untersucht. Gut belegt ist die Umverteilung des Drucks unter der Fußsohle. Die klinischen Effekte sind kleiner und hängen vom Beschwerdebild ab. Wir zeigen die Ergebnisse mit ihren Grenzen.
-- Karussell-Buttons, aria-label: Vorherige Studie / Nächste Studie
+- Text: Mehrere unabhängige Universitätsgruppen haben Formthotics untersucht. Gut belegt ist, dass die Einlagen den Druck gleichmäßiger verteilen. Bei Beschwerden sind die Effekte kleiner. Zu jeder Frage zeigen wir Ergebnis und Grenzen.
 
-**Studie 1** (Balkendiagramm, Spitzendruck unter der Ferse im Stehen in N/cm²: Schuh allein 10,4 · Fersenkissen 10,5 · flache Sohle 9,7 · Formthotics 7,9 · Maßorthese 7,3)
-- Kennzahl: −24 %
-- Titel: Fersendruck im Stehen
-- Aussage: Bei 30 Personen mit Fersenschmerz senkte die angeformte Einlage den Spitzendruck unter der Ferse im Stehen von 10,4 auf 7,9 N/cm². Ein weiches Fersenkissen veränderte ihn nicht.
-- Grenzen: Einmalige Druckmessung ohne Schmerzerhebung. Eine eigens gefertigte Orthese mit Fersenaussparung lag mit 7,3 N/cm² etwas darunter.
+Aufbau: Eine Studie zur Zeit. Links (mobil oben als wischbare Reihe) fünf Fragen, rechts die Bühne mit Antwort, Grafik mit Umschalter, Einordnung, „Wie sicher ist das?“ und Quellenzeile. Einordnung und Quelle sind immer sichtbar. „Genauer ansehen“ öffnet die genauen Werte. Die Fragen sind Bedienelemente (Reiter), keine rhetorischen Fragen im Fließtext.
+
+- Fragenliste, aria-label: Fragen an die Forschung
+- Umschalter, Legende für Screenreader: Vergleich wählen
+- Beweiskraft: Wie sicher ist das?
+  - Gut belegt: Deutliches, statistisch gesichertes Ergebnis, das weitere Studien stützen.
+  - Eingeschränkt belegt: Messbares Ergebnis, aber klein, nur kurzfristig, nur in einer Gruppe untersucht oder aus Studien niedriger Qualität.
+  - Nur ein Hinweis: Das Ergebnis weist in eine Richtung, ist aber statistisch nicht gesichert.
+  - Zusatz im Aufklapper: Die Einstufung ist unsere Einordnung der veröffentlichten Ergebnisse.
+- Aufklapper: Genauer ansehen
+- Überschriften im Aufklapper: Ergebnisse · Statistik und Hinweise · Warum diese Einstufung · So stufen wir ein · Quelle
+
+**Studie 1** (ein Balken auf einer Spur „Schuh ohne Einlage“, Länge nach den Messwerten 10,4 und 7,9 N/cm², der frei werdende Teil schraffiert)
+- Frage: Entlastet die Einlage die Ferse im Stehen?
+- Antwort: Rund ein Viertel weniger Druck unter der Ferse.
+- Umschalter: Ohne Einlage / Mit Formthotics
+- Kennzeile: Druck im Schuh ohne Einlage / −24 % Druck unter der Ferse
+- Unter der Grafik: Gemessen im Stehen bei 30 Menschen mit Fersenschmerz.
+- Einordnung: Aber gemessen wurde nur einmal der Druck, nicht ob die Schmerzen nachließen.
+- Wie sicher ist das? Gut belegt (Stufe 3 von 3)
 - Quelle: Chia JKK et al., Ann Acad Med Singapore 2009; 38: 869–875. Untersucht wurden Formthotics.
-- DOI: https://doi.org/10.47102/annals-acadmedsg.v38n10p869
+- Genauer ansehen
+  - Art der Studie: Kontrollierter Vergleich in einer sportmedizinischen Klinik in Singapur, nicht verblindet. Eine Messung im ruhigen Stehen, in Schuhen, auf einer Druckmessplatte.
+  - Teilnehmende: 30 Erwachsene zwischen 20 und 65 Jahren mit einseitigem, chronischem Fersenschmerz (Plantarfasziitis).
+  - Gemessen: Spitzendruck unter der Ferse des schmerzenden Fußes in N/cm².
+  - Ergebnisse, Spitzendruck unter der Ferse: Schuh allein 10,4 N/cm² · Weiches Fersenkissen 10,5 N/cm² (+1 %) · Flache Sohle 9,7 N/cm² (−6 %) · Formthotics 7,9 N/cm² (−24 %) · Maßorthese mit Fersenaussparung 7,3 N/cm² (−30 %)
+  - Statistik und Hinweise: Unterschiede zwischen den fünf Varianten statistisch gesichert (p = 0,0008). Am gesunden Fuß zeigte sich ein ähnliches Muster (11,4 auf 8,2 N/cm² mit Formthotics). Die eigens gefertigte Maßorthese senkte den Druck etwas stärker.
+  - Warum diese Einstufung: Deutlicher, statistisch gesicherter Messwert. Zwei weitere Studien mit Formthotics maßen ähnliche Werte, beim Gehen in Arbeitsstiefeln 19 % weniger (Bonanno DR et al., Sci Rep 2019) und mit einem neuen Paar 23 % weniger (Cronkwright DG et al., Gait & Posture 2011).
+  - Quelle: Chia JKK, Suresh S, Kuah A, Ong JLJ, Phua JMT, Seah AL. Comparative trial of the foot pressure patterns between corrective orthotics, formthotics, bone spur pads and flat insoles in patients with chronic plantar fasciitis. Ann Acad Med Singapore 2009; 38: 869–875. DOI 10.47102/annals-acadmedsg.v38n10p869
 
-**Studie 2** (zwei Punktraster mit je 100 Punkten, 26 und 18 hervorgehoben)
-- Kennzahl: 18 statt 26
-- Titel: von 100 mit Überlastungsbeschwerden
-- Aussage: In einer verblindeten Studie mit 306 Rekrutinnen und Rekruten der australischen Marine traten in elf Wochen Grundausbildung mit angeformten Formthotics bei 18 von 100 Personen typische Überlastungsbeschwerden auf, mit flachen Vergleichssohlen bei 26 von 100.
-- Grenzen: Der Unterschied ist statistisch nicht gesichert (p = 0,098). Leichte Beschwerden wie Blasen waren mit Formthotics anfangs häufiger (20 gegenüber 12 von 100).
+**Studie 2** (100 Personen-Figuren in fünf Reihen, Betroffene farbig: 26 mit flacher Sohle, 18 mit Formthotics)
+- Frage: Gibt es weniger Überlastungs·beschwerden?
+- Antwort: Etwas weniger, 18 statt 26 von 100 Personen.
+- Umschalter: Mit flacher Sohle / Mit Formthotics
+- Kennzeile: 26 von 100 hatten Beschwerden / 18 von 100 hatten Beschwerden
+- Unter der Grafik: Jede Figur steht für eine von 100 Personen. Rekrutinnen und Rekruten der Marine, elf Wochen Grundausbildung.
+- Einordnung: Aber die Studie war zu klein, um den Unterschied statistisch abzusichern. Leichte Beschwerden wie Blasen waren mit Formthotics anfangs häufiger.
+- Wie sicher ist das? Nur ein Hinweis (Stufe 1 von 3)
 - Quelle: Bonanno DR et al., Br J Sports Med 2018; 52: 298–302. Untersucht wurden Formthotics.
-- DOI: https://doi.org/10.1136/bjsports-2017-098273
+- Genauer ansehen
+  - Art der Studie: Randomisierte Studie. Weder die Teilnehmenden noch die Untersuchenden wussten, wer welche Sohle trug.
+  - Teilnehmende: 306 Rekrutinnen und Rekruten der australischen Marine (241 Männer, 65 Frauen, 17 bis 50 Jahre), elf Wochen Grundausbildung, Einlagen rund zehn Stunden am Tag getragen.
+  - Vergleich: Flache, 3 mm dünne Sohle aus demselben Schaumstoff, gleich in Farbe und Aufdruck.
+  - Gemessen: Neu aufgetretene typische Überlastungsbeschwerden, zusammengefasst aus Schienbeinkantensyndrom sowie Schmerzen an Kniescheibe, Achillessehne und Ferse.
+  - Ergebnisse, Personen mit Überlastungsbeschwerden: Formthotics 27 von 153 (17,6 %) · Flache Vergleichssohle 40 von 153 (26,1 %) · Leichte Nebenwirkungen mit Formthotics 20,3 % · Leichte Nebenwirkungen mit flacher Sohle 12,4 %
+  - Statistik und Hinweise: Verhältnis der Raten 0,66 (95-%-Konfidenzintervall 0,39 bis 1,11), p = 0,098. Der Unterschied ist damit statistisch nicht gesichert. Nebenwirkungen waren vor allem Schmerzen am Fußgewölbe oder Schienbein und Blasen, meist leicht bis mäßig und zu 77 % in den ersten zwei Wochen.
+  - Warum diese Einstufung: Sorgfältig angelegte Studie mit einer gleich aussehenden Vergleichssohle. Das Ergebnis weist in eine Richtung, ist aber statistisch nicht gesichert.
+  - Quelle: Bonanno DR, Murley GS, Munteanu SE, Landorf KB, Menz HB. Effectiveness of foot orthoses for the prevention of lower limb overuse injuries in naval recruits: a randomised controlled trial. Br J Sports Med 2018; 52: 298–302. DOI 10.1136/bjsports-2017-098273
 
-**Studie 3** (Liniendiagramm, Fußschmerz-Score 0 bis 100, höher bedeutet weniger Schmerz, zu Beginn · nach 3 Monaten · nach 12 Monaten: Placebo-Sohle 45 · 63 · 82, Formthotics 42 · 71 · 84, Maßorthese aus Hartkunststoff 48 · 72 · 83)
-- Kennzahl: 3 Monate
-- Titel: früher besser, nach einem Jahr gleich
-- Aussage: 135 Menschen mit Fersenschmerz erhielten eine Placebo-Sohle, Formthotics oder eine Maßorthese aus Hartkunststoff. Mit Formthotics besserten sich die Beschwerden in den ersten drei Monaten etwas schneller als mit Placebo und ebenso gut wie mit der teureren Maßorthese.
-- Grenzen: Nach zwölf Monaten ging es allen Gruppen ähnlich gut. Der Vorteil nach drei Monaten war klein (Funktion +8,4 Punkte, p = 0,03).
+**Studie 3** (zwei Balken von 0 bis 100 Punkte: dünne Vergleichssohle 63 und Formthotics 71 nach 3 Monaten, 82 und 84 nach 12 Monaten)
+- Frage: Hilft sie bei Fersenschmerz?
+- Antwort: Etwas, in den ersten drei Monaten.
+- Umschalter: Nach 3 Monaten / Nach 12 Monaten
+- Kennzeile: 3 Monate, Mit Formthotics etwas weniger Schmerz / 12 Monate, Kaum noch ein Unterschied
+- Unter der Grafik: 135 Menschen mit Fersenschmerz, Fragebogen von 0 bis 100 Punkten. Mehr Punkte bedeuten weniger Schmerz.
+- Einordnung: Aber der Vorsprung war klein, und nach einem Jahr ging es allen Gruppen ähnlich gut.
+- Wie sicher ist das? Eingeschränkt belegt (Stufe 2 von 3)
 - Quelle: Landorf KB et al., Arch Intern Med 2006; 166: 1305–1310. Untersucht wurden unter anderem Formthotics.
-- DOI: https://doi.org/10.1001/archinte.166.12.1305
+- Genauer ansehen
+  - Art der Studie: Randomisierte Studie mit drei Gruppen über zwölf Monate. Die Teilnehmenden wussten nicht, welche Einlage sie trugen.
+  - Teilnehmende: 135 Erwachsene mit Fersenschmerz (Plantarfasziitis) seit mindestens vier Wochen, im Mittel etwa 48 Jahre alt.
+  - Vergleich: Dünne, weiche Schaumstoffsohle als Scheinbehandlung und eine Maßorthese aus Hartkunststoff nach Gipsabdruck.
+  - Gemessen: Fragebogen zur Fußgesundheit (Foot Health Status Questionnaire), 0 bis 100 Punkte, mehr Punkte bedeuten weniger Beschwerden.
+  - Ergebnisse, Schmerzwert zu Beginn, nach 3 und nach 12 Monaten: Dünne Vergleichssohle 45 · 63 · 82 · Formthotics 42 · 71 · 84 · Maßorthese aus Hartkunststoff 48 · 72 · 83
+  - Statistik und Hinweise: Nach drei Monaten gegenüber der Vergleichssohle Funktion +8,4 Punkte (p = 0,03), Schmerz +8,7 Punkte (p = 0,05). Nach zwölf Monaten kein gesicherter Unterschied zwischen den Gruppen. Formthotics und die Maßorthese schnitten ähnlich ab (Unterschied 1,3 Punkte, nicht gesichert).
+  - Warum diese Einstufung: Randomisierte Studie mit einem gesicherten, aber kleinen Vorteil bei der Funktion nach drei Monaten. Beim Schmerz war er knapp nicht gesichert, nach zwölf Monaten gab es keinen Unterschied mehr.
+  - Quelle: Landorf KB, Keenan AM, Herbert RD. Effectiveness of foot orthoses to treat plantar fasciitis: a randomized trial. Arch Intern Med 2006; 166: 1305–1310. DOI 10.1001/archinte.166.12.1305
 
-**Studie 4** (zwei Balken, Minderung des Spitzendrucks unter der Ferse gegenüber dem Schuh ohne Einlage: neues Paar 23 % · über zwölf Monate getragen 18 %)
-- Kennzahl: −18 %
-- Titel: nach über einem Jahr Tragezeit
-- Aussage: Nach mindestens zwölf Monaten täglicher Nutzung verringerten die Einlagen den Spitzendruck unter der Ferse noch um 18 %. Bei einem neuen Paar waren es 23 %.
-- Grenzen: Gemessen bei 31 Personen über 65 Jahren. Bei starker beruflicher Belastung kann der Verschleiß höher sein. Der Hersteller nennt eine Lebensdauer von 12 bis 24 Monaten.
+**Studie 4** (ein Balken auf der Spur „Schuh ohne Einlage“: 23 % kürzer mit neuem Paar, 18 % kürzer nach einem Jahr, frei werdender Teil schraffiert)
+- Frage: Wirkt sie auch nach einem Jahr noch?
+- Antwort: Auch nach einem Jahr Tragezeit noch 18 % weniger Druck unter der Ferse.
+- Umschalter: Neues Paar / Ein Jahr getragen
+- Kennzeile: −23 % Druck unter der Ferse / −18 % Druck unter der Ferse
+- Unter der Grafik: Gemessen beim Gehen bei 31 Menschen über 65 Jahren.
+- Einordnung: Aber gemessen wurde bei älteren Menschen. Wer im Beruf viel steht und geht, nutzt die Einlagen womöglich schneller ab.
+- Wie sicher ist das? Eingeschränkt belegt (Stufe 2 von 3)
 - Quelle: Cronkwright DG et al., Gait & Posture 2011; 34: 553–557. Untersucht wurden Formthotics.
-- DOI: https://doi.org/10.1016/j.gaitpost.2011.07.016
+- Genauer ansehen
+  - Art der Studie: Messung im Labor beim Gehen, mit Druckmesssohlen im Schuh. Verglichen wurden der Schuh ohne Einlage, ein neues Paar und das eigene, mindestens zwölf Monate getragene Paar.
+  - Teilnehmende: 31 Erwachsene über 65 Jahre (im Mittel 75,4 Jahre, 21 Frauen) aus einer Studie zur Sturzvorbeugung.
+  - Gemessen: Spitzendruck und Kraft unter der Ferse und dem Mittelfuß, im Vergleich zum Schuh ohne Einlage.
+  - Ergebnisse, im Vergleich zum Schuh ohne Einlage: Fersendruck, neues Paar −23 % · Fersendruck, mindestens zwölf Monate getragen −18 % · Kraft unter dem Mittelfuß, neues Paar +42 % · Kraft unter dem Mittelfuß, getragen +44 %
+  - Statistik und Hinweise: Getragen lag der Fersendruck 6 % höher als mit einem neuen Paar (p = 0,001). In beiden Fällen trug das Fußgewölbe mehr Last. Untersucht wurden Formthotics Dual Density in voller Länge. Der Hersteller nennt eine Lebensdauer von 12 bis 24 Monaten.
+  - Warum diese Einstufung: Klares Messergebnis, aber nur eine Studie mit 31 älteren Menschen. Für Menschen mit starker Belastung im Beruf fehlen Messungen.
+  - Quelle: Cronkwright DG, Spink MJ, Landorf KB, Menz HB. Evaluation of the pressure-redistributing properties of prefabricated foot orthoses in older people after at least 12 months of wear. Gait & Posture 2011; 34: 553–557. Prozentwerte aus J Foot Ankle Res 2011; 4 (Suppl 1): O13. DOI 10.1016/j.gaitpost.2011.07.016
 
-**Studie 5** (zwei horizontale Balken gegen eine 100-%-Linie „ohne Einlage“, mit Konfidenzintervall: stützende Einlagen 72 (55 bis 94) · reine Dämpfungssohlen 92 (73 bis 116))
-- Kennzahl: −28 %
-- Titel: Verletzungen mit stützenden Einlagen
-- Aussage: Eine Auswertung von 18 Studien, überwiegend mit Rekruten, fand mit stützenden, konturierten Einlagen 28 % weniger Verletzungen als ohne. Reine Dämpfungssohlen zeigten keinen gesicherten Effekt.
-- Grenzen: Die Auswertung betrifft Einlagen verschiedener Hersteller und nicht speziell Formthotics. Die Qualität der Einzelstudien war niedrig bis mittel.
-- Quelle: Bonanno DR et al., Br J Sports Med 2017; 51: 86–96.
-- DOI: https://doi.org/10.1136/bjsports-2016-096671
+**Studie 5** (ein Balken auf der Spur „Ohne Einlage“ = 100 %: nur polsternde Sohlen 92 %, stützende Einlagen 72 %; neutral in Grau und Tinte, nicht in der Formthotics-Farbe Oliv)
+- Frage: Stützen oder nur polstern, was bringt mehr?
+- Antwort: Stützende Einlagen, mit 28 % weniger Verletzungen.
+- Umschalter: Nur polsternd / Stützend
+- Kennzeile: Kein gesicherter Effekt / −28 % Verletzungen
+- Unter der Grafik: Auswertung von 18 Studien, meist mit Rekruten. Einlagen verschiedener Hersteller.
+- Einordnung: Aber die Auswertung betrifft Einlagen verschiedener Hersteller und nicht speziell Formthotics. Die Qualität der einzelnen Studien war niedrig bis mittel.
+- Wie sicher ist das? Eingeschränkt belegt (Stufe 2 von 3)
+- Quelle: Bonanno DR et al., Br J Sports Med 2017; 51: 86–96. Einlagen verschiedener Hersteller, nicht speziell Formthotics.
+- Genauer ansehen
+  - Art der Studie: Systematische Übersicht mit Meta-Analyse, also eine gemeinsame Auswertung von 18 Studien, 11 zu stützenden Einlagen und 7 zu reinen Dämpfungssohlen.
+  - Teilnehmende: Überwiegend Rekrutinnen und Rekruten in der militärischen Grundausbildung.
+  - Gemessen: Verletzungen im Vergleich zu keiner Einlage (relatives Risiko, ohne Einlage = 100 %).
+  - Ergebnisse, Verletzungen, ohne Einlage = 100 %: Stützende Einlagen, alle Verletzungen 72 % (55 bis 94) · Stützende Einlagen, Ermüdungsbrüche 59 % (45 bis 76) · Reine Dämpfungssohlen, alle Verletzungen 92 % (73 bis 116)
+  - Statistik und Hinweise: In Klammern der 95-%-Konfidenzintervall. Bei stützenden Einlagen liegt er ganz unter 100 %, das Ergebnis ist statistisch gesichert. Bei Dämpfungssohlen reicht er über 100 %, ein Effekt ist nicht gesichert.
+  - Warum diese Einstufung: Viele Studien und ein statistisch gesichertes Ergebnis. Die einzelnen Studien waren aber von niedriger bis mittlerer Qualität, und die Auswertung betrifft nicht speziell Formthotics.
+  - Quelle: Bonanno DR, Landorf KB, Munteanu SE, Murley GS, Menz HB. Effectiveness of foot orthoses and shock-absorbing insoles for the prevention of injury: a systematic review and meta-analysis. Br J Sports Med 2017; 51: 86–96. DOI 10.1136/bjsports-2016-096671
 
 - Kasten „Was nicht belegt ist“: Für chronische Rückenschmerzen fand die einzige randomisierte Studie mit Formthotics keinen Vorteil (Sadler S et al., Musculoskeletal Care 2023). Ob Einlagen Fehltage verringern, hat bisher keine Studie untersucht. Einlagen ersetzen keine ärztliche Diagnose oder Therapie.
 

@@ -1,20 +1,24 @@
 import { Reveal } from "@/components/motion/Reveal";
 import { SplitHeading } from "@/components/motion/SplitHeading";
-import { Carousel } from "@/components/ui/Carousel";
 import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Section } from "@/components/ui/Section";
-import { notProven, studies, studiesIntro } from "@/content/studies";
-import { StudyCard } from "./StudyCard";
+import { notProven, studiesIntro } from "@/content/studies";
+import { StudyExplorer } from "./StudyExplorer";
+
+// Without JavaScript the tabs cannot switch: every study stands in full, one below the other.
+const noScriptStyle = `[data-study-tabs],[data-study-switch],[data-study-details-toggle]{display:none!important}[data-study-stage]{grid-column:1/-1!important}[data-study-panel],[data-study-detail],[data-study-details]{visibility:visible!important;opacity:1!important;transform:none!important;grid-area:auto!important;height:auto!important;pointer-events:auto!important}[data-study-panel]+[data-study-panel],[data-study-detail]+[data-study-detail]{margin-top:40px;padding-top:40px;border-top:1px solid rgb(11 23 38/.1)}[data-study-q]{position:static!important;width:auto!important;height:auto!important;margin:0 0 12px!important;padding:0!important;overflow:visible!important;clip:auto!important;clip-path:none!important;white-space:normal!important;font-weight:600}`;
 
 /**
- * Research: intro, five study cards and the box that states what is not proven. From 768 px the
- * cards form a draggable scroll-snap carousel (two full cards and a peek at 1440 px), on phones a
- * vertical stack. On desktop this sheet slides over the pinned fitting stage.
+ * Research: intro, the study explorer (one question at a time) and the box that states what is
+ * not proven. On desktop this sheet slides over the pinned fitting stage.
  */
 export function Studies() {
   return (
     <Section id={studiesIntro.id} rounded labelledBy="studies-heading" className="pin:-mt-[100vh]">
+      <noscript>
+        <style>{noScriptStyle}</style>
+      </noscript>
       <Container>
         <Eyebrow>{studiesIntro.eyebrow}</Eyebrow>
         <div className="mt-4 flex flex-col gap-4 lg:mt-5 lg:gap-8">
@@ -24,17 +28,9 @@ export function Studies() {
           </Reveal>
         </div>
 
-        <Carousel
-          label={studiesIntro.carouselLabel}
-          previousLabel={studiesIntro.previous}
-          nextLabel={studiesIntro.next}
-          slideClassName="md:w-[420px] lg:w-[480px] xl:w-[560px]"
-          className="mt-10 lg:mt-14"
-        >
-          {studies.map((study) => (
-            <StudyCard key={study.id} study={study} />
-          ))}
-        </Carousel>
+        <Reveal className="mt-10 lg:mt-14">
+          <StudyExplorer />
+        </Reveal>
 
         <Reveal className="mx-auto mt-12 max-w-[860px] rounded-panel border border-line p-6 md:mt-16 md:p-8">
           <h3 className="title-sm">{notProven.heading}</h3>

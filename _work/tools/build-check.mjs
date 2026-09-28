@@ -101,26 +101,96 @@ async function desktop(browser) {
   const afterSecond = await tile.getAttribute('aria-expanded');
   ok('audience tile toggles with the keyboard', afterFirst !== afterSecond, `${afterFirst} -> ${afterSecond}`);
 
-  // study carousel
-  const scroller = page.locator('#forschung [role="region"]');
-  await scroller.scrollIntoViewIfNeeded();
-  await sleep(800);
-  const left0 = await scroller.evaluate((el) => el.scrollLeft);
-  await page.getByRole('button', { name: 'Nächste Studie' }).click();
+  // studies: one question at a time (tabs), a two-state graphic per study, details on demand
+  const tabs = page.locator('#forschung [role="tab"]');
+  const panels = page.locator('#forschung [role="tabpanel"]');
+  ok('studies: five questions as a named tab list', (await tabs.count()) === 5 && (await page.locator('#forschung [role="tablist"][aria-label="Fragen an die Forschung"]').count()) === 1, `${await tabs.count()} tabs`);
+  const shown = () => page.evaluate(() => Array.from(document.querySelectorAll('#forschung [role="tabpanel"]')).map((el) => getComputedStyle(el).visibility === 'visible'));
+  const selected = () => page.evaluate(() => Array.from(document.querySelectorAll('#forschung [role="tab"]')).findIndex((el) => el.getAttribute('aria-selected') === 'true'));
+  await page.evaluate(() => document.querySelector('#forschung [role="tablist"]').scrollIntoView({ block: 'center' }));
+  await sleep(1800);
+  const stageBox = () => page.evaluate(() => {
+    const stage = document.querySelector('#forschung [role="tabpanel"]').parentElement.parentElement;
+    return { height: Math.round(stage.getBoundingClientRect().height), after: Math.round(document.querySelector('#forschung h3.title-sm').getBoundingClientRect().top + window.scrollY) };
+  });
+  const boxes = [];
+  for (let i = 0; i < 5; i++) {
+    await tabs.nth(i).click();
+    await sleep(700);
+    boxes.push(await stageBox());
+  }
+  const visibility = await shown();
+  ok('studies: a click shows exactly the chosen study', (await selected()) === 4 && visibility.filter(Boolean).length === 1 && visibility[4], JSON.stringify(visibility));
+  ok('studies: stage and page keep their height for every study', new Set(boxes.map((b) => `${b.height}/${b.after}`)).size === 1, JSON.stringify(boxes));
+
+  await tabs.nth(0).click();
+  await sleep(600);
+  await page.keyboard.press('ArrowDown');
+  await sleep(500);
+  const afterDown = await selected();
+  const focusedTab = await page.evaluate(() => document.activeElement?.getAttribute('role') === 'tab' && document.activeElement.getAttribute('aria-selected') === 'true');
+  await page.keyboard.press('End');
+  await sleep(500);
+  const afterEnd = await selected();
+  await page.keyboard.press('Home');
+  await sleep(500);
+  const afterHome = await selected();
+  await page.keyboard.press('ArrowUp');
+  await sleep(500);
+  const afterUp = await selected();
+  ok('studies: arrow keys, Home and End switch the study and move focus', afterDown === 1 && focusedTab && afterEnd === 4 && afterHome === 0 && afterUp === 4, `${afterDown} ${focusedTab} ${afterEnd} ${afterHome} ${afterUp}`);
+  const roving = await page.evaluate(() => Array.from(document.querySelectorAll('#forschung [role="tab"]')).map((el) => el.tabIndex).join(','));
+  ok('studies: only the chosen tab is in the tab order', roving === '-1,-1,-1,-1,0', roving);
+
+  // the first study plays once from „Ohne Einlage“ to „Mit Formthotics“; the switch then hands control over
+  await tabs.nth(0).click();
+  await sleep(1200);
+  const barWidth = () => panels.nth(0).locator('.bar-fill').evaluate((el) => el.style.width);
+  const widthWith = await barWidth();
+  await panels.nth(0).locator('label', { hasText: 'Ohne Einlage' }).click();
   await sleep(900);
-  const left1 = await scroller.evaluate((el) => el.scrollLeft);
-  ok('carousel: next arrow moves one card', left1 - left0 > 300, `${left0} -> ${left1}`);
-  await page.getByRole('button', { name: 'Vorherige Studie' }).click();
+  const widthWithout = await barWidth();
+  ok('studies: the switch changes the bar (with → without)', widthWith !== widthWithout && widthWithout === '100%' && parseFloat(widthWith) > 75 && parseFloat(widthWith) < 77, `${widthWith} -> ${widthWithout}`);
+  const checkedAfter = await panels.nth(0).locator('input[type=radio]:checked').getAttribute('value');
+  ok('studies: the switch is a radio group that follows the click', checkedAfter === '0', `checked ${checkedAfter}`);
+
+  await tabs.nth(1).click();
+  await sleep(1600);
+  const figures = () => panels.nth(1).evaluate((el) => {
+    const glyphs = Array.from(el.querySelectorAll('.person-glyph'));
+    return { total: glyphs.length, olive: glyphs.filter((g) => g.classList.contains('bg-olive-500')).length, ink: glyphs.filter((g) => g.classList.contains('bg-ink')).length };
+  });
+  const people1 = await figures();
+  await panels.nth(1).locator('label', { hasText: 'Mit flacher Sohle' }).click();
+  await sleep(1200);
+  const people0 = await figures();
+  ok('studies: 100 figures, 18 marked with Formthotics and 26 with the flat insole', people1.total === 100 && people1.olive === 18 && people0.ink === 26 && people0.olive === 0, `${JSON.stringify(people1)} -> ${JSON.stringify(people0)}`);
+
+  const graphics = await page.evaluate(() => Array.from(document.querySelectorAll('#forschung [role="img"][aria-label]')).map((el) => el.getAttribute('aria-label')));
+  ok('studies: every graphic is an image whose label names both states', graphics.length === 5 && graphics.every((label) => (label.match(/\d/g) ?? []).length >= 4), graphics.map((l) => l.slice(0, 40)).join(' | '));
+
+  const always = await panels.nth(1).evaluate((el) => {
+    const visible = (node) => node && getComputedStyle(node).visibility === 'visible' && node.getBoundingClientRect().height > 0;
+    const caveat = Array.from(el.querySelectorAll('p')).find((p) => p.textContent.startsWith('Aber '));
+    const source = el.querySelector('.source-line');
+    return { caveat: visible(caveat), source: visible(source) && /Br J Sports Med 2018/.test(source.textContent) && /Untersucht wurden Formthotics/.test(source.textContent) };
+  });
+  ok('studies: limit and source line are visible without opening anything', always.caveat && always.source, JSON.stringify(always));
+
+  const toggle = page.getByRole('button', { name: 'Genauer ansehen' });
+  ok('studies: details start closed', (await toggle.getAttribute('aria-expanded')) === 'false');
+  await toggle.click();
   await sleep(900);
-  const left2 = await scroller.evaluate((el) => el.scrollLeft);
-  ok('carousel: previous arrow moves back', left2 < left1, `${left1} -> ${left2}`);
-  await scroller.focus();
-  await page.keyboard.press('ArrowRight');
-  await sleep(900);
-  const left3 = await scroller.evaluate((el) => el.scrollLeft);
-  ok('carousel: arrow key moves one card', left3 - left2 > 300, `${left2} -> ${left3}`);
-  const charts = await page.locator('#forschung figure[data-chart]').count();
-  ok('five study charts', charts === 5, `${charts}`);
+  const openDetails = await page.evaluate(() => {
+    const region = document.querySelector('#forschung [data-study-details]');
+    const links = Array.from(region.querySelectorAll('a[href*="doi.org"]')).filter((a) => getComputedStyle(a).visibility === 'visible');
+    return { height: Math.round(region.getBoundingClientRect().height), links: links.map((a) => a.getAttribute('href')) };
+  });
+  ok('studies: details open with the exact values and the DOI of the chosen study', (await toggle.getAttribute('aria-expanded')) === 'true' && openDetails.height > 200 && openDetails.links.length === 1 && openDetails.links[0].includes('bjsports-2017-098273'), JSON.stringify(openDetails));
+  await toggle.focus();
+  await page.keyboard.press('Enter');
+  await sleep(700);
+  ok('studies: details close with the keyboard', (await toggle.getAttribute('aria-expanded')) === 'false');
 
   // fitting process: scroll progress advances the steps
   const section = page.locator('#anpassung');
@@ -147,8 +217,6 @@ async function desktop(browser) {
   const shares = bounds.slice(1).map((b, i) => b - (bounds[i] ?? -81)).concat([rangeEnd - bounds[bounds.length - 1]]);
   const even = Math.max(...shares) - Math.min(...shares) <= 80;
   ok('fitting process: four even steps across the whole pin (300vh)', bounds.length === 4 && even && sectionHeight === 2700, `boundaries ${bounds.join(', ')}; shares ${shares.join(', ')}`);
-  const plot = await page.evaluate(() => { const svg = document.querySelectorAll('#forschung article')[2].querySelector('figure > div > svg'); return Math.round(svg.getBoundingClientRect().height); });
-  ok('line chart: 160 px SVG with a 120 px plot', plot === 160, `${plot}`);
   await page.getByRole('button', { name: 'Schritt 2: Erwärmen' }).click();
   await sleep(1600);
   const step2 = await current();
@@ -163,7 +231,6 @@ async function desktop(browser) {
     const top = await page.evaluate((id) => Math.round(document.querySelector(id).getBoundingClientRect().top), hash);
     ok(`hard load of /${hash} lands on the section`, Math.abs(top - expectedTop) <= 4, `top ${top}, expected ${expectedTop}`);
   }
-  ok('studies scroller is a named region', (await page.locator('#forschung [role="region"][aria-label="Studien"]').count()) === 1);
 
   // R2-01 on Home: the hero link scrolls again although #forschung is already in the URL
   await page.goto(`${base}/#forschung`, { waitUntil: 'networkidle' });
@@ -214,15 +281,41 @@ async function mobile(browser) {
   const video = await page.evaluate(() => document.querySelector('main section video source')?.getAttribute('src') ?? '');
   ok('mobile: hero video sources are the portrait cut', video.includes('portrait'), video);
 
-  const stack = await page.evaluate(() => {
-    const items = Array.from(document.querySelectorAll('#forschung [role="region"] > ul > li'));
-    const lefts = new Set(items.map((li) => Math.round(li.getBoundingClientRect().left)));
-    const heights = items.map((li) => Math.round(li.getBoundingClientRect().height));
-    const region = document.querySelector('#forschung [role="region"]');
-    return { count: items.length, columns: lefts.size, heights, tabbable: region.hasAttribute('tabindex'), arrows: document.querySelectorAll('#forschung button[aria-label="Nächste Studie"]').length };
+  // studies: chips scroll sideways, the stage (answer, switch, graphic) fits one screen
+  const row = await page.evaluate(() => {
+    const list = document.querySelector('#forschung [role="tablist"]');
+    const tabs = Array.from(list.querySelectorAll('[role="tab"]'));
+    const labels = Array.from(document.querySelectorAll('#forschung [role="tabpanel"] label')).filter((el) => el.getBoundingClientRect().height > 0);
+    return {
+      scrolls: list.scrollWidth > list.clientWidth && getComputedStyle(list).overflowX === 'auto',
+      tabHeights: Math.min(...tabs.map((t) => Math.round(t.getBoundingClientRect().height))),
+      switchHeights: Math.min(...labels.map((l) => Math.round(l.getBoundingClientRect().height))),
+    };
   });
-  const arrowsHidden = await page.locator('#forschung button[aria-label="Nächste Studie"]').isHidden();
-  ok('mobile: studies are a vertical stack with natural heights', stack.count === 5 && stack.columns === 1 && new Set(stack.heights).size > 1 && !stack.tabbable && arrowsHidden, JSON.stringify(stack));
+  ok('mobile: question chips form a sideways row, touch targets ≥ 44 px', row.scrolls && row.tabHeights >= 44 && row.switchHeights >= 44, JSON.stringify(row));
+  const chips = page.locator('#forschung [role="tab"]');
+  await page.evaluate(() => {
+    const list = document.querySelector('#forschung [role="tablist"]');
+    window.scrollTo({ top: list.getBoundingClientRect().top + window.scrollY - 90, behavior: 'instant' });
+  });
+  await sleep(600);
+  const spans = [];
+  for (let i = 0; i < 5; i++) {
+    await chips.nth(i).tap();
+    await sleep(900);
+    spans.push(await page.evaluate((index) => {
+      const list = document.querySelector('#forschung [role="tablist"]');
+      const tab = list.querySelectorAll('[role="tab"]')[index];
+      const panel = document.querySelectorAll('#forschung [role="tabpanel"]')[index];
+      const answer = panel.querySelector('.title-answer').getBoundingClientRect();
+      const graphic = panel.querySelector('[role="img"]').getBoundingClientRect();
+      const t = tab.getBoundingClientRect();
+      const l = list.getBoundingClientRect();
+      return { chipInRow: t.left >= l.left - 1 && t.right <= l.right + 1, answerTop: Math.round(answer.top), graphicBottom: Math.round(graphic.bottom) };
+    }, i));
+  }
+  ok('mobile: a tapped chip is scrolled fully into the row', spans.every((s) => s.chipInRow), JSON.stringify(spans.map((s) => s.chipInRow)));
+  ok('mobile: answer, switch and graphic are visible together under the header', spans.every((s) => s.answerTop >= 77 && s.graphicBottom <= 844), JSON.stringify(spans));
 
   const pressureOrder = await page.evaluate(() => {
     const section = document.querySelector('#druckverteilung');
@@ -287,7 +380,7 @@ async function reducedMotion(browser) {
   await sleep(1000);
 
   const hidden = await page.evaluate(() =>
-    Array.from(document.querySelectorAll('[data-reveal], [data-split], [data-stagger] > *, [data-chart] *'))
+    Array.from(document.querySelectorAll('[data-reveal], [data-split], [data-stagger] > *'))
       .filter((el) => parseFloat(getComputedStyle(el).opacity) < 0.15)
       .map((el) => el.tagName + '.' + (el.className?.baseVal ?? el.className)),
   );
@@ -305,6 +398,18 @@ async function reducedMotion(browser) {
   const values = await readouts(page);
   ok('reduced motion: pressure map starts in the insole state', /173/.test(values[0]), values[0]);
 
+  // studies: the result state is there at once and a study change does not animate
+  await page.evaluate(() => document.querySelector('#forschung [role="tablist"]').scrollIntoView({ block: 'center' }));
+  await sleep(500);
+  const firstChecked = await page.locator('#forschung [role="tabpanel"]').first().locator('input[type=radio]:checked').getAttribute('value');
+  await page.locator('#forschung [role="tab"]').nth(2).click();
+  await sleep(60);
+  const instantPanel = await page.evaluate(() => {
+    const panel = document.querySelectorAll('#forschung [role="tabpanel"]')[2];
+    return { opacity: getComputedStyle(panel).opacity, visibility: getComputedStyle(panel).visibility };
+  });
+  ok('reduced motion: studies show their result and switch without animation', firstChecked === '1' && instantPanel.opacity === '1' && instantPanel.visibility === 'visible', `${firstChecked} ${JSON.stringify(instantPanel)}`);
+
   await page.evaluate(() => window.scrollTo(0, 0));
   await sleep(400);
   const playLabel = await page.locator('main section').first().getByRole('button').getAttribute('aria-label');
@@ -314,10 +419,31 @@ async function reducedMotion(browser) {
   await context.close();
 }
 
+async function noScript(browser) {
+  const context = await browser.newContext({ viewport: { width: 1440, height: 900 }, locale: 'de-DE', javaScriptEnabled: false });
+  const page = await context.newPage();
+  await page.goto(base, { waitUntil: 'load' });
+  const state = await page.evaluate(() => {
+    const visible = (el) => getComputedStyle(el).visibility === 'visible' && el.getBoundingClientRect().height > 0;
+    const panels = Array.from(document.querySelectorAll('#forschung [data-study-panel]'));
+    const questions = Array.from(document.querySelectorAll('#forschung [data-study-panel] [data-study-q]'));
+    const links = Array.from(document.querySelectorAll('#forschung [data-study-details] a[href*="doi.org"]'));
+    return {
+      panels: panels.filter(visible).length,
+      questions: questions.filter((q) => q.getBoundingClientRect().width > 100).length,
+      tabsHidden: getComputedStyle(document.querySelector('#forschung [role="tablist"]')).display === 'none',
+      doi: links.filter(visible).length,
+    };
+  });
+  ok('no JS: all five studies stand one below the other with question, answer and details', state.panels === 5 && state.questions === 5 && state.tabsHidden && state.doi === 5, JSON.stringify(state));
+  await context.close();
+}
+
 const browser = await chromium.launch();
 await desktop(browser);
 await mobile(browser);
 await reducedMotion(browser);
+await noScript(browser);
 await browser.close();
 
 const failed = results.filter((r) => !r.pass);

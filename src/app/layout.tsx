@@ -44,7 +44,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body>
         <noscript>
           {/* Reveal start states only apply when JavaScript can animate them in. */}
-          <style>{`[data-reveal],[data-split],[data-stagger]>*{opacity:1!important}[data-image-reveal]>:first-child{transform:none!important}[data-chart] *{transform:none!important;opacity:1!important;clip-path:none!important}`}</style>
+          <style>{`[data-reveal],[data-split],[data-stagger]>*{opacity:1!important}[data-image-reveal]>:first-child{transform:none!important}`}</style>
         </noscript>
         <a
           href="#inhalt"
