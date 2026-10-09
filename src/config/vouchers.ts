@@ -29,7 +29,7 @@ export const vouchers = {
     scope: "Untersuchung, Einlagen, Anpassung",
     codeLabel: "Code",
     code: "BR-2026-0001",
-    issuer: "Brandlmaier & Rauscher Einlagen",
+    issuer: "Brandmaier & Rauscher Einlagen",
   },
 } as const;
 

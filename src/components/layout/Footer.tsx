@@ -51,18 +51,14 @@ export function Footer() {
         >
           <Container className="grid grid-cols-2 gap-x-8 gap-y-10 md:grid-cols-[minmax(0,1.2fr)_auto_auto_minmax(220px,1fr)] md:gap-x-10 xl:grid-cols-[minmax(260px,1.2fr)_auto_auto_minmax(240px,1fr)_minmax(300px,1.1fr)] xl:gap-x-12">
             <div className="col-span-2 md:col-span-1">
-              {/* Runner mark plus live text: the client's logo file still carries the old
-                  spelling of the name, so the wordmark is set in type here. */}
-              <div className="flex items-center gap-4">
-                <Image src="/brand/mark-duo.png" alt="" width={72} height={72} className="size-16 shrink-0 lg:size-[72px]" />
-                <span aria-hidden="true" className="h-16 w-px bg-olive-300/50 lg:h-[72px]" />
-                <p className="flex flex-col gap-1.5 whitespace-nowrap">
-                  <span className="text-[1.0625rem] leading-none font-medium tracking-[0.04em] text-olive-300 uppercase lg:text-lg">
-                    {site.lockup.line1}
-                  </span>
-                  <span className="text-[0.8125rem] leading-none tracking-[0.2em] text-steel-200">{site.lockup.line2}</span>
-                </p>
-              </div>
+              <Image
+                src="/brand/logo-full-duo.png"
+                alt={`${site.shortName} ${site.product}`}
+                width={1854}
+                height={711}
+                sizes="260px"
+                className="h-auto w-full max-w-[220px] lg:max-w-[260px]"
+              />
               <div className="mt-8 max-w-[420px] space-y-3">
                 {footer.notes.map((note) => (
                   <p key={note} className="text-xs leading-[1.55] text-steel-200/80">

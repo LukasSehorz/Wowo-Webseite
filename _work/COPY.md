@@ -1,4 +1,4 @@
-# Copy Deck · Brandlmaier & Rauscher GbR · Einlagen
+# Copy Deck · Brandmaier & Rauscher GbR · Einlagen
 
 Verbindliche Texte für alle Seiten. Nummerierung wie in `BRIEF.md`, Abschnitt 6.
 
@@ -17,7 +17,7 @@ Regeln für jede spätere Änderung:
 
 **Navigation:** Start · Über uns · Gutscheine
 **Header-Button:** Gutscheine anfragen
-**Logo-Lockup:** BRANDLMAIER & RAUSCHER / Einlagen
+**Logo-Lockup:** BRANDMAIER & RAUSCHER / Einlagen
 
 **Laufband (nur Unterseiten):**
 - Individuell angepasst von Physiotherapeuten
@@ -30,17 +30,17 @@ Regeln für jede spätere Änderung:
 - Button: Zur Bestellanfrage
 - Spalte Seiten: Start, Über uns, Gutscheine
 - Spalte Rechtliches: Impressum, Datenschutz
-- Spalte Kontakt: Brandlmaier & Rauscher GbR, Adresse `[TODO(client)]`, Telefon `[TODO(client)]`, E-Mail `[TODO(client)]`
-- Hinweis klein: Formthotics ist eine Marke der Foot Science International Ltd, Neuseeland. Die Brandlmaier & Rauscher GbR ist ein unabhängiger Anbieter.
+- Spalte Kontakt: Brandmaier & Rauscher GbR, Adresse `[TODO(client)]`, Telefon `[TODO(client)]`, E-Mail `[TODO(client)]`
+- Hinweis klein: Formthotics ist eine Marke der Foot Science International Ltd, Neuseeland. Die Brandmaier & Rauscher GbR ist ein unabhängiger Anbieter.
 - Hinweis klein: Einlagen ersetzen keine ärztliche Diagnose oder Therapie. Bei anhaltenden Beschwerden wenden Sie sich bitte an Ihre Ärztin oder Ihren Arzt.
-- Copyright: © 2026 Brandlmaier & Rauscher GbR
+- Copyright: © 2026 Brandmaier & Rauscher GbR
 
 **SEO**
-- Start, Title: Funktionelle Einlagen, thermisch angepasst | Brandlmaier & Rauscher
+- Start, Title: Funktionelle Einlagen, thermisch angepasst | Brandmaier & Rauscher
 - Start, Description: Zwei Physiotherapeuten passen funktionelle Einlagen direkt im eigenen Schuh an. Unternehmen geben die Versorgung per Gutschein an ihre Mitarbeitenden weiter.
-- Über uns, Title: Über uns | Brandlmaier & Rauscher Einlagen
-- Über uns, Description: Sebastian Rauscher und Wolfgang Brandlmaier sind Physiotherapeuten mit zusammen 20 Jahren Berufserfahrung. Seit 2018 passen wir funktionelle Einlagen an.
-- Gutscheine, Title: Einlagen-Gutscheine für Unternehmen | Brandlmaier & Rauscher
+- Über uns, Title: Über uns | Brandmaier & Rauscher Einlagen
+- Über uns, Description: Sebastian Rauscher und Wolfgang Brandmaier sind Physiotherapeuten mit zusammen 20 Jahren Berufserfahrung. Seit 2018 passen wir funktionelle Einlagen an.
+- Gutscheine, Title: Einlagen-Gutscheine für Unternehmen | Brandmaier & Rauscher
 - Gutscheine, Description: Gutscheine für Untersuchung, funktionelle Einlagen und thermische Anpassung. Anzahl wählen, Bestellanfrage senden, an Mitarbeitende weitergeben.
 
 ---
@@ -227,13 +227,13 @@ Aufbau: Eine Studie zur Zeit. Links (mobil oben als wischbare Reihe) fünf Frage
 - Zusatz: Die EU-Arbeitsschutzagentur nennt individuell angepasste Einlagen als eine Maßnahme bei Steharbeit, an deren Kosten sich Arbeitgeber beteiligen können, wenn sie ärztlich oder physiotherapeutisch empfohlen sind (EU-OSHA 2021).
 - Mini-Schritte: Anzahl wählen · Gutscheine verteilen · Termin und Anpassung
 - Button: Gutscheine anfragen
-- Text auf der Gutscheinkarte: GUTSCHEIN / Untersuchung, Einlagen, Anpassung / Code BR-2026-0001 / Brandlmaier & Rauscher Einlagen
+- Text auf der Gutscheinkarte: GUTSCHEIN / Untersuchung, Einlagen, Anpassung / Code BR-2026-0001 / Brandmaier & Rauscher Einlagen
 
 ### 1.10 Über uns (Teaser)
 - Eyebrow: Über uns
 - H2: Angepasst von Physiotherapeuten
-- Text: Sebastian Rauscher passt seit 2018 funktionelle Einlagen an und hat sechs Jahre lang Therapeutinnen und Therapeuten darin ausgebildet. Wolfgang Brandlmaier betreut seit 2021 den Regionalligisten TSV Buchbach und bringt Erfahrung aus dem betrieblichen Gesundheitsmanagement mit.
-- Karten: Sebastian Rauscher · Physiotherapeut, Gründer / Wolfgang Brandlmaier · Physiotherapeut und Heilpraktiker
+- Text: Sebastian Rauscher passt seit 2018 funktionelle Einlagen an und hat sechs Jahre lang Therapeutinnen und Therapeuten darin ausgebildet. Wolfgang Brandmaier betreut seit 2021 den Regionalligisten TSV Buchbach und bringt Erfahrung aus dem betrieblichen Gesundheitsmanagement mit.
+- Karten: Sebastian Rauscher · Physiotherapeut, Gründer / Wolfgang Brandmaier · Physiotherapeut und Heilpraktiker
 - Pfeillink: Mehr über uns
 
 ### 1.11 Vertrauenszeile
@@ -248,7 +248,7 @@ Aufbau: Eine Studie zur Zeit. Links (mobil oben als wischbare Reihe) fünf Frage
 ### 2.2 Hero
 - Eyebrow: Über uns
 - H1 (Display): ERST DER BEFUND, | DANN DIE EINLAGE
-- Text: Hinter Brandlmaier & Rauscher stehen zwei Physiotherapeuten mit zusammen 20 Jahren Berufserfahrung. Wir passen Einlagen so an, wie wir behandeln. Am Anfang steht die Untersuchung.
+- Text: Hinter Brandmaier & Rauscher stehen zwei Physiotherapeuten mit zusammen 20 Jahren Berufserfahrung. Wir passen Einlagen so an, wie wir behandeln. Am Anfang steht die Untersuchung.
 
 ### 2.3 Zahlen
 1. **20** · Jahre Berufserfahrung in der Physiotherapie, zusammengerechnet
@@ -259,7 +259,7 @@ Aufbau: Eine Studie zur Zeit. Links (mobil oben als wischbare Reihe) fünf Frage
 ### 2.4 Geschichte
 - H2: Aus der Praxis entstanden
 - Absatz 1: 2018 gründete Sebastian Rauscher die erste GbR für funktionelle Schuheinlagen. Im selben Jahr kam er in das Lehrteam der Fortbildungsakademie Markus Pschick (FAMP). Dort unterrichtete er bis 2024 Manuelle Therapie und die Versorgung mit funktionellen Einlagen.
-- Absatz 2: 2026 stieg Wolfgang Brandlmaier ein. Er arbeitet seit 2021 mit den Spielern des Regionalligisten TSV Buchbach und kennt aus dem betrieblichen Gesundheitsmanagement die Belastungen am Arbeitsplatz. Seitdem führen beide das Unternehmen gemeinsam.
+- Absatz 2: 2026 stieg Wolfgang Brandmaier ein. Er arbeitet seit 2021 mit den Spielern des Regionalligisten TSV Buchbach und kennt aus dem betrieblichen Gesundheitsmanagement die Belastungen am Arbeitsplatz. Seitdem führen beide das Unternehmen gemeinsam.
 
 ### 2.5 Profile
 
@@ -277,11 +277,11 @@ Aufbau: Eine Studie zur Zeit. Links (mobil oben als wischbare Reihe) fünf Frage
   - 2018 · Gründung der ersten GbR für funktionelle Schuheinlagen
   - 2018 bis 2024 · Lehrteam Manuelle Therapie und Lehrteam Funktionelle Schuheinlagen der FAMP
   - 2024 · Gründung der eigenen Privatpraxis für Physiotherapie
-  - 2026 · Fortführung der GbR mit Wolfgang Brandlmaier
+  - 2026 · Fortführung der GbR mit Wolfgang Brandmaier
 
-**Wolfgang Brandlmaier**
+**Wolfgang Brandmaier**
 - Rolle: Physiotherapeut und Heilpraktiker
-- Kurztext: Wolfgang Brandlmaier ist seit 2020 Physiotherapeut und betreut seit 2021 den Regionalligisten TSV Buchbach. Er absolvierte die Fortbildung in Manueller Therapie an der International Academy of Orthopedic Medicine und die Ausbildung zum Heilpraktiker. 2024 und 2025 arbeitete er im betrieblichen Gesundheitsmanagement.
+- Kurztext: Wolfgang Brandmaier ist seit 2020 Physiotherapeut und betreut seit 2021 den Regionalligisten TSV Buchbach. Er absolvierte die Fortbildung in Manueller Therapie an der International Academy of Orthopedic Medicine und die Ausbildung zum Heilpraktiker. 2024 und 2025 arbeitete er im betrieblichen Gesundheitsmanagement.
 - Qualifikationen (Chips): Physiotherapeut · Heilpraktiker · Manuelle Therapie (IAOM) · Krankengymnastik am Gerät · Manuelle Lymphdrainage
 - Werdegang:
   - 2017 bis 2020 · Ausbildung zum Physiotherapeuten, Ludwig Fresenius Schulen München
@@ -293,7 +293,7 @@ Aufbau: Eine Studie zur Zeit. Links (mobil oben als wischbare Reihe) fünf Frage
   - 2023 bis 2025 · Ausbildung zum Heilpraktiker, Zentrum für Naturheilkunde München
   - 2024 bis 2025 · Phy-4-You, Betriebliches Gesundheitsmanagement
   - 2026 · Gründung der Heilpraktikerpraxis TheraSano
-  - 2026 · Einstieg in die Brandlmaier & Rauscher GbR
+  - 2026 · Einstieg in die Brandmaier & Rauscher GbR
 
 - Platzhalter-Hinweis unter den Porträtkarten (nur im Code als Kommentar): Hier folgt das Porträtfoto.
 
@@ -381,5 +381,5 @@ Aufbau: Eine Studie zur Zeit. Links (mobil oben als wischbare Reihe) fünf Frage
 
 ## 4 Rechtliche Seiten (Platzhalter)
 
-- Impressum: Überschrift „Impressum“, darunter ein klar markierter Platzhalterblock mit den nötigen Angaben nach § 5 DDG (Name der GbR, vertretungsberechtigte Gesellschafter Sebastian Rauscher und Wolfgang Brandlmaier, Anschrift, Telefon, E-Mail, Umsatzsteuer-ID falls vorhanden, Zeile „Umsatzsteuer“ für den Hinweis auf die Kleinunternehmerregelung nach § 19 UStG, Berufsbezeichnung Physiotherapeut, verliehen in Deutschland, zuständige Aufsichtsbehörde). Alle Werte `[TODO(client)]`.
+- Impressum: Überschrift „Impressum“, darunter ein klar markierter Platzhalterblock mit den nötigen Angaben nach § 5 DDG (Name der GbR, vertretungsberechtigte Gesellschafter Sebastian Rauscher und Wolfgang Brandmaier, Anschrift, Telefon, E-Mail, Umsatzsteuer-ID falls vorhanden, Zeile „Umsatzsteuer“ für den Hinweis auf die Kleinunternehmerregelung nach § 19 UStG, Berufsbezeichnung Physiotherapeut, verliehen in Deutschland, zuständige Aufsichtsbehörde). Alle Werte `[TODO(client)]`.
 - Datenschutz: Überschrift „Datenschutzerklärung“, Platzhalterblock mit den Punkten Verantwortliche Stelle, Hosting, Server-Logfiles, Bestellanfrage-Formular (Zweck, Rechtsgrundlage Art. 6 Abs. 1 lit. b DSGVO, Speicherdauer), Rechte der Betroffenen. Hinweis im Code: muss vor dem Livegang juristisch geprüft werden. Die Seite setzt keine Cookies und lädt keine Inhalte von Drittanbietern.

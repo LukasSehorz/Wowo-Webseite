@@ -190,6 +190,6 @@ export const voucherTeaser = typesetContent({
 export const foundersTeaser = typesetContent({
   eyebrow: "Über uns",
   heading: "Angepasst von Physiotherapeuten",
-  text: "Sebastian Rauscher passt seit 2018 funktionelle Einlagen an und hat sechs Jahre lang Therapeutinnen und Therapeuten darin ausgebildet. Wolfgang Brandlmaier betreut seit 2021 den Regionalligisten TSV Buchbach und bringt Erfahrung aus dem betrieblichen Gesundheitsmanagement mit.",
+  text: "Sebastian Rauscher passt seit 2018 funktionelle Einlagen an und hat sechs Jahre lang Therapeutinnen und Therapeuten darin ausgebildet. Wolfgang Brandmaier betreut seit 2021 den Regionalligisten TSV Buchbach und bringt Erfahrung aus dem betrieblichen Gesundheitsmanagement mit.",
   link: { label: "Mehr über uns", href: "/ueber-uns" },
 });

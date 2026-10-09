@@ -25,30 +25,30 @@ export const footer = typesetContent({
     email: "E-Mail",
   },
   notes: [
-    "Formthotics ist eine Marke der Foot Science International Ltd, Neuseeland. Die Brandlmaier & Rauscher GbR ist ein unabhängiger Anbieter.",
+    "Formthotics ist eine Marke der Foot Science International Ltd, Neuseeland. Die Brandmaier & Rauscher GbR ist ein unabhängiger Anbieter.",
     "Einlagen ersetzen keine ärztliche Diagnose oder Therapie. Bei anhaltenden Beschwerden wenden Sie sich bitte an Ihre Ärztin oder Ihren Arzt.",
   ],
-  copyright: "© 2026 Brandlmaier & Rauscher GbR",
+  copyright: "© 2026 Brandmaier & Rauscher GbR",
 });
 
 export const seo = {
   home: {
-    title: "Funktionelle Einlagen, thermisch angepasst | Brandlmaier & Rauscher",
+    title: "Funktionelle Einlagen, thermisch angepasst | Brandmaier & Rauscher",
     description:
       "Zwei Physiotherapeuten passen funktionelle Einlagen direkt im eigenen Schuh an. Unternehmen geben die Versorgung per Gutschein an ihre Mitarbeitenden weiter.",
   },
   about: {
-    title: "Über uns | Brandlmaier & Rauscher Einlagen",
+    title: "Über uns | Brandmaier & Rauscher Einlagen",
     description:
-      "Sebastian Rauscher und Wolfgang Brandlmaier sind Physiotherapeuten mit zusammen 20 Jahren Berufserfahrung. Seit 2018 passen wir funktionelle Einlagen an.",
+      "Sebastian Rauscher und Wolfgang Brandmaier sind Physiotherapeuten mit zusammen 20 Jahren Berufserfahrung. Seit 2018 passen wir funktionelle Einlagen an.",
   },
   vouchers: {
-    title: "Einlagen-Gutscheine für Unternehmen | Brandlmaier & Rauscher",
+    title: "Einlagen-Gutscheine für Unternehmen | Brandmaier & Rauscher",
     description:
       "Gutscheine für Untersuchung, funktionelle Einlagen und thermische Anpassung. Anzahl wählen, Bestellanfrage senden, an Mitarbeitende weitergeben.",
   },
-  imprint: { title: "Impressum | Brandlmaier & Rauscher Einlagen" },
-  privacy: { title: "Datenschutzerklärung | Brandlmaier & Rauscher Einlagen" },
+  imprint: { title: "Impressum | Brandmaier & Rauscher Einlagen" },
+  privacy: { title: "Datenschutzerklärung | Brandmaier & Rauscher Einlagen" },
 };
 
 // Interface labels that are not part of the marketing copy (navigation and controls).
@@ -56,7 +56,7 @@ export const ui = {
   skipLink: "Zum Inhalt springen",
   mainNavLabel: "Hauptnavigation",
   footerNavLabel: "Fußnavigation",
-  homeLinkLabel: "Brandlmaier & Rauscher Einlagen, zur Startseite",
+  homeLinkLabel: "Brandmaier & Rauscher Einlagen, zur Startseite",
   menu: { open: "Menü öffnen", close: "Menü schließen", title: "Menü" },
   claimsLabel: "Auf einen Blick",
   externalHint: "öffnet in neuem Tab",

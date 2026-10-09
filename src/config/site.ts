@@ -6,17 +6,17 @@ export type Pending = string | null;
 export const PENDING_LABEL = "Angabe folgt";
 
 export const site = {
-  name: "Brandlmaier & Rauscher GbR",
-  shortName: "Brandlmaier & Rauscher",
+  name: "Brandmaier & Rauscher GbR",
+  shortName: "Brandmaier & Rauscher",
   product: "Einlagen",
   // TODO(client): final domain. Used for canonical URLs, sitemap and Open Graph.
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
   locale: "de_DE",
   lockup: {
-    line1: "Brandlmaier & Rauscher",
+    line1: "Brandmaier & Rauscher",
     line2: "Einlagen",
   },
-  founders: ["Sebastian Rauscher", "Wolfgang Brandlmaier"],
+  founders: ["Sebastian Rauscher", "Wolfgang Brandmaier"],
   contact: {
     // TODO(client): street, postcode and city of the practice
     address: null as Pending,

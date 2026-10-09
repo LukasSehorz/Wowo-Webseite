@@ -14,7 +14,7 @@ const data = await page.evaluate(() => {
   const res = { viewport: { w: innerWidth, docH: document.documentElement.scrollHeight } };
   res.h1 = type(document.querySelector('h1'));
   res.eyebrow = type(byText('main p, main span', 'Über uns'));
-  res.lead = type(byText('main p', 'Hinter Brandlmaier'));
+  res.lead = type(byText('main p', 'Hinter Brandmaier'));
   const heroImg = document.querySelector('main img');
   res.heroImg = box(heroImg?.parentElement);
   res.heroImgRatio = heroImg ? Math.round(heroImg.getBoundingClientRect().width / heroImg.getBoundingClientRect().height * 100) / 100 : null;
@@ -27,7 +27,7 @@ const data = await page.evaluate(() => {
   res.storyImg = box(storyImg?.parentElement);
   res.storyImgRatio = storyImg ? Math.round(storyImg.getBoundingClientRect().width / storyImg.getBoundingClientRect().height * 100) / 100 : null;
   // profiles
-  const names = ['Sebastian Rauscher', 'Wolfgang Brandlmaier'].map((n) => [...document.querySelectorAll('main h3, main h2')].find((h) => h.textContent.trim() === n));
+  const names = ['Sebastian Rauscher', 'Wolfgang Brandmaier'].map((n) => [...document.querySelectorAll('main h3, main h2')].find((h) => h.textContent.trim() === n));
   res.profiles = names.map((h) => {
     const row = h.closest('section') || h.parentElement.parentElement;
     const textCol = h.parentElement;

@@ -45,7 +45,7 @@ figure{margin:0;background:#0d172b;border-radius:6px;overflow:hidden}
 figcaption{padding:8px 10px 10px}figcaption b{display:block;font-size:13.5px;color:#fff;word-break:break-all}
 figcaption span{display:block;font-size:11.5px;color:var(--steel);margin-top:2px}
 </style>
-<h1>Brandlmaier &amp; Rauscher – stock media contact sheet</h1>
+<h1>Brandmaier &amp; Rauscher – stock media contact sheet</h1>
 <p class="sub">${videos.length} videos (poster = first frame; each as .mp4 + .webm + .jpg in public/media/videos) · ${photos.length} photos (public/media/images) · sources and licenses: _work/media/CREDITS.md</p>
 <h2>Videos</h2><div class="g v">${videos.map((v) => card(v.poster, v.n, v.info)).join('')}</div>
 <h2>Photos – the four tile-*.jpg are delivered as 4:5 crops (1600×2000)</h2><div class="g p">${photos.map((p) => card(p.file, p.n, p.info)).join('')}</div>`;
